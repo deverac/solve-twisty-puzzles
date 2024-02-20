@@ -1,0 +1,35 @@
+      body {
+          background-color: lightblue;
+          font-family: sans-serif;
+      }
+      h3 {
+          padding-top: 1em;
+          padding-bottom: 1em;
+          text-align: center;
+          background-color: gray;
+          font-size: 3em;
+      }
+      .bname {
+           font-weight: bold;
+           font-family: monospace;
+      }
+      .note {
+          text-align: center;
+          margin: 2em;
+      }
+      .note twedra-player {
+          display: inline-block;
+          vertical-align: middle;
+      }
+      .expo {
+          text-align: left;
+          display: inline-block;
+          width: 60%;
+          vertical-align: middle;
+          margin: 1em;
+          xborder: solid 1px white;
+      }
+      .polyframe {
+          xbackground-color: red;
+          padding-right: 3em;
+      }

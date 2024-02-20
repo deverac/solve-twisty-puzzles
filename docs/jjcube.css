@@ -1,0 +1,57 @@
+body {
+    font-family: sans-serif;
+    background-color: lightblue;
+}
+.btext {
+  font-size: large;
+  font-weight: bold;
+  border-top: 3px solid black;
+  background-color: lightgray;
+}
+.elab {
+  font-size: x-large;
+  margin: 1em;
+}
+.fin {
+  border: 3px solid black;
+  text-align: center;
+  width: 50%;
+  margin: auto auto;
+}
+.goal {
+  border: 3px solid black;
+  text-align: center;
+}
+.inf {
+  border: 1px solid black;
+  text-align: center;
+  margin-left: 3em;
+  margin-right: 3em;
+  background-color: lightgray;
+}
+.inf div {
+  font-size: medium;
+}
+.mov {
+  border: 1px solid black;
+  text-align: center;
+  margin-left: 9em;
+  margin-right: 9em;
+}
+.alg {
+  white-space: pre;
+  font-family: monospace;
+   background-color: lightgray;
+}
+.alg:before, .alg:after {
+  content: ' ';
+}
+.state {
+  font-weight: bold;
+}
+
+.gr { background-color: yellow; }
+.gw { background-color: lightgreen; }
+.rw { background-color: lightpink; }
+#edges td { text-align: center; }
+.rule { font-weight: bold; }

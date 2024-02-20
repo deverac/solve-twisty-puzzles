@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Solve any size hexahedron</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel='stylesheet' href='soln.css'>
+  <script type='text/javascript' src='twedra.min.js'></script>
+</head>
+<body>
+  <h2>Solve a hexahedron twisty puzzle (cube) of any size</h2>
+  <p>This page describes an intutive method of solving a hexahedron (cube) of any size.
+  It is not a fast method of solving.</p>
+  <ul>
+    <li>
+      <a href='#buildcenters'>Build centers</a>
+    </li>
+    <li>
+      <a href='#swapcenters'>Swap centers</a>
+    </li>
+    <li>
+      <a href='#buildedges'>Build edges</a>
+    </li>
+    <li>
+      <a href='#solvecube'>Solve cube</a>
+    </li>
+    <li>
+      <a href='#correctparity'>Correct parity</a>
+    </li>
+  </ul>
+  <h3><a name='buildcenters' id="buildcenters">Build centers</a></h3>
+  <p>When building centers, the color of each face must be correct relative to the other
+  faces. On odd-cubes, each face has a fixed center-cubie, so the color of each face is
+  predetermined. Even-cubes do not have a fixed center tile so the color of each face is
+  not predetermined; any color can be created on any face. On such cubes the color of a
+  face, relative to the other faces, is determined by the arrangement of colors on the
+  corner-cubies.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "6", edgeColor: "gray"'></twedra-player>
+    <div class='expo'>
+      Centers of a hexahedron.
+    </div>
+  </div>
+  <p>Centers are created by building rows of color and then collecting the rows on
+  another face.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", stickers: "white, 2 14 15 16, 4 9; green, 3 7; blue, 3 13; red, 3 19; yellow, 3 25", colors: "gray", alg: "2 1 1; 1 0 1; 2 1 -1"'>
+    </twedra-player>
+    <div class='expo'>
+      Completing a row.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", stickers: "white, 2 7 9 10, 4 16; green, 3 8; blue, 3 14; red, 3 20; yellow, 3 26", colors: "gray", alg: "2 2 1; 1 0 -1; 2 2 -1"'>
+    </twedra-player>
+    <div class='expo'>
+      Completing a row.
+    </div>
+  </div>
+  <p>Completed rows are collected on another face.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", stickers: "white, 2 7 13 19 25, 1 8 9 10 14 15 16 20 21 22 26 27 28; red, 1 7; blue, 1 13; green, 1 19; yellow, 1 25", colors: "gray", alg: "1 0 -1; 0 1 -1; 1 0 -1; 1 0 -1; 0 1 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the completed row to another face.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Move the completed row out of the way</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Turn the inner layer to move the scambled row to the top face</td>
+        </tr>
+        <tr>
+          <td>3-4</td>
+          <td>Replace scrambled row with the completed bar</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner layer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", stickers: "white, 2 8 14 20 26, 1 7 9 10 13 15 16 19 21 22 25 27 28; red, 1 8; blue, 1 14; green, 1 20; yellow, 1 26", colors: "gray", alg: "1 0 -1; 0 2 -1; 1 0 -1; 1 0 -1; 0 2 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the completed row to another face.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Move the completed row out of the way</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Turn the inner layer to move the scambled row to the top face</td>
+        </tr>
+        <tr>
+          <td>3-4</td>
+          <td>Replace scrambled row with the completed row</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner layer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Once four centers have been completed a different method must be used for building
+  the last two centers. The following method will work for building any center, but it
+  is slower than the 'row building' method described above.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "8", stickers: "cyan, 1 9 14 18 21 27 28 35 36 42 45 49 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      The diagonal tiles.
+    </div>
+  </div>
+  <p>Tiles on diagonals can easily be replaced with tiles from other faces.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 -1; 1 0 1; 0 2 1; 1 0 1; 0 2 -1; 1 0 1; 1 0 1; 0 2 1;", stickers: "cyan, 1 9 14 21 27 28 35 36 42 45 49 54; magenta, 1 18; white, 2 21", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      The magenta tile will be replaced by the white tile.
+    </div>
+  </div>
+  <p>Tiles which are not on a diagonal are more difficult to replace.</p>
+  <p>Centers are built in 'rings' that start in the middle and expand outward. Each ring
+  is composed of four bars. The bars grow longer as the ring expands.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", stickers: "cyan, 1 27 28 35 36", colors: "gray"'></twedra-player>
+    <div class='expo'>
+      Build the inner ring. Since these four tiles are all part of a diagonal they can
+      be skipped and completed later, if desired.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", stickers: "cyan, 1 19 20 26 29 34 37 43 44", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      Expand the ring. Each bar is two tiles long.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", stickers: "cyan, 1 10 11 12 13 17 22 25 30 33 38 41 46 50 51 52 53", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      Expand the ring. Each bar is four tiles long.
+    </div>
+  </div>
+  <p>To create a ring, each bar of the ring must be created. To create a bar, each tile
+  of the bar must be added to the bar. A bar is created by adding one tile at a
+  time.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 3 1; 2 7 1; 0 1 1; 2 7 -1; 0 3 -1; 2 7 1; 0 1 -1", stickers: "white, 1 53, 2 30; magenta, 1 50 51 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      Add one tile from the top face to the bar.
+    </div>
+  </div>
+  <p>Anytime a bar needs to be created, it can be created by adding one tile at a time
+  until the bar has been built. The process will eventually create a bar, but it is a
+  slow process. A bar can be built faster by adding multiple tiles at once.</p>
+  <p>In the example below, adding two tiles completes the bar. When solving a real cube,
+  completing a bar (especially a long one) may not be so simple and may require several
+  iterations of adding tiles.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 1; 0 4 1; 2 7 1; 0 1 1; 2 7 -1; 0 2 -1; 0 4 -1; 2 7 1; 0 1 -1", stickers: "white, 1 51 53, 2 22 38; magenta, 1 50 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Adding multiple (two) tiles to a bar.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-2</td>
+          <td>Turn inner layers to move tiles from the top face to complete the bar</td>
+        </tr>
+        <tr>
+          <td>3-5</td>
+          <td>Replace the bar</td>
+        </tr>
+        <tr>
+          <td>6-7</td>
+          <td>Un-turn the inner layers</td>
+        </tr>
+        <tr>
+          <td>8-9</td>
+          <td>Restore the completed bar</td>
+        </tr>
+      </table>
+      <p>A bar has been created.</p>
+    </div>
+  </div>
+  <p>The example below illustrates creating an outer ring. (Although not shown, all
+  inner rings should have already been created.) The ring is created by building four
+  bars. For the sake of clarity, the creation of each bar has been extremely
+  simplified.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 1; 0 4 1; 2 7 1; 0 1 1; 2 7 -1; 0 2 -1; 0 4 -1; 2 7 1; 0 1 -1", stickers: "white, 1 51 53, 2 22 38; magenta, 1 50 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Create the first bar.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 1; 0 4 1; 2 7 1; 0 1 1; 2 7 -1; 0 2 -1; 0 4 -1; 2 7 1; 0 1 -1", stickers: "white, 1 17 25 33 41 51 53, 2 22 38; magenta, 1 50 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Create the second bar.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 1; 0 4 1; 2 7 1; 0 1 1; 2 7 -1; 0 2 -1; 0 4 -1; 2 7 1; 0 1 -1", stickers: "white, 1 10 11 12 13 17 25 33 41 51 53, 2 22 38; magenta, 1 50 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Create the third bar.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "8", alg: "0 2 1; 0 4 1; 2 7 1; 0 1 1; 2 7 -1; 0 2 -1; 0 4 -1; 2 7 1; 0 1 -1", stickers: "white, 1 10 11 12 13 22 30 38 46 17 25 33 41 51 53, 2 22 38; magenta, 1 50 52, 2 10 11 12 13; yellow, 0 9 10 11 12 13 14 17 18 19 20 21 22 25 26 27 28 29 30 33 34 35 36 37 38 41 42 43 44 45 46 49 50 51 52 53 54", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Create the fourth bar.</p>
+    </div>
+  </div>
+  <p>Once the fourth bar has been created, the ring has been created.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "8", stickers: "white, 1 10 11 12 13 22 30 38 46 17 19 20 25 26 29 33 34 37 41 43 44 50 51 52 53", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Two rings have been created. Any missing tiles on the diagonals can be filled
+      in.</p>
+    </div>
+  </div>
+  <p>Odd-cubes are completed in a similar manner, but the diagonals and rings are
+  slightly different. In the examples below, the magenta center tile is only for
+  reference and can be ignored.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "7", stickers: "cyan, 1 8 12 16 18 30 32 36 40; magenta, 1 24", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The diagonal tiles.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "7", stickers: "cyan, 1 17 23 25 31; magenta, 1 24", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Build the inner ring. Each bar is one tile long.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "7", stickers: "cyan, 1 9 10 11 15 19 22 26 29 33 37 38 39; magenta, 1 24", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Expand the ring. Each bar is three tiles long.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "c", rows: "7", colors: "gray", stickers: "white, 1 9 10 11 15 17 19 22 23 25 26 29 31 33 37 38 39; magenta, 1 24"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The center and two rings have been created. Any missing tiles on the diagonals
+      can be filled in.</p>
+    </div>
+  </div>
+  <h3><a name='swapcenters' id="swapcenters">Swap centers</a></h3>
+  <p>Swapping centers should not normally be needed, but can fix centers that were
+  created on the wrong face.</p>
+  <p>On odd-cubes, the center tile of each face determines the color of the face. On
+  even-cubes, the face colors can be determined by examining corner-cubies.</p>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'edgeColor: "gray", stickers: "cyan, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28; magenta, 3 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28", alg: "2 0 1; 2 1 1; 2 2 1; 2 0 1; 2 1 1; 2 2 1; 1 0 1; 1 0 1; 1 5 1; 1 5 1; 2 0 -1; 2 1 -1; 2 2 -1; 2 0 -1; 2 1 -1; 2 2 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Swap the magenta and cyan centers.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>0-6</td>
+          <td>Turn half the cube two quarter-turns</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>7-8</td>
+          <td>Turn top layer twice</td>
+          <td>(U2)</td>
+        </tr>
+        <tr>
+          <td>9-10</td>
+          <td>Turn bottom layer twice</td>
+          <td>(D2)</td>
+        </tr>
+        <tr>
+          <td>11-16</td>
+          <td>Un-turn half the cube</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Swapping centers in this way preserves all edges.</p>
+  <h3><a name='buildedges' id="buildedges">Build edges</a></h3>
+  <p>The example below illustrates completing an edge that is already built. Scrambled
+  cubes do not have edges that are already built. The edges must be built by joining
+  matching edge-cubies in pairs, then in triplets, etc.</p>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'alg: "2 1 -1", colors: "gray", stickers: "green, 2 1 2 3, 5 24; white, 4 6 12 18, 2 34; red, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Turn the inner layer so that the green-white edge-cubie is joined to the
+      green-white edge.</p>
+    </div>
+  </div>
+  <p>The green-white edge has been completed, but the red centers (and other edges) have
+  been broken. They need to be fixed.</p>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'alg: "2 1 -1; 0 0 1; 2 2 -1; 0 0 -1; 2 1 1", colors: "gray", stickers: "green, 2 1 2 3, 5 24; white, 4 6 12 18, 2 34; magenta, 2 11, 1 1; cyan, 2 4, 4 24; red, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28"'>
+    </twedra-player>
+    <div class='expo'>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the inner slice to build the green-white edge.</td>
+        </tr>
+        <tr>
+          <td>2-4</td>
+          <td>Replace the completed edge with an edge containining a sacrificial
+          (magenta) edge-cubie.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner slice.</td>
+        </tr>
+      </table>
+      <p>The cyan edge-cubie is returned to its starting position, but it is now part of
+      a different edge.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", alg: "2 4 -1; 0 0 -1; 2 0 -1; 0 0 1; 2 4 1", colors: "gray", stickers: "green, 2 1 2 3, 5 24; white, 4 6 12 18, 2 34; magenta, 2 24, 0 4; cyan, 2 4, 4 24; red, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The sacrificial edge-cubie can be taken from any edge.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the inner slice to build the green-white edge.</td>
+        </tr>
+        <tr>
+          <td>2-4</td>
+          <td>Replace the completed edge with an edge containining a sacrificial
+          (magenta) edge-cubie.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner slice.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Edge-cubies can be added to edges one-at-a-time, however, the last three unsolved
+  edge-cubies must be stategically positioned so that all three edges are solved
+  simultaneously.</p>
+  <div class='note'>
+    <twedra-player puzzle="6x6x6" twedra-config=
+    'alg: "2 1 -1; 0 0 1; 2 2 -1; 0 0 -1; 2 1 1", colors: "gray", stickers: "green, 2 1 2 3, 5 24; white, 4 6 12 18, 2 34; red, 2 11 31 32 33; blue, 5 6 12 18, 1 1; yellow, 1 2 3 4, 2 4; orange, 4 24, 2 17 23 29; cyan, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The last three edge-cubies are positioned so that three edges are solved
+      simultaneously.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the inner layer to complete an edge.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Move the completed edge out of the way.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Replace the completed edge with a new edge.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Move the new edge to the original position of the first edge.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner layer.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>The same three edges that are shown above are rearranged below, but are solved in
+  the same manner.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "c", rows: "6", premoves: "2 5 -1; 1 0 -1; 0 0 -1; 2 0 1; 0 5 1", alg: "2 4 -1; 0 0 1; 2 5 -1; 0 0 -1; 2 4 1", colors: "gray", stickers: "green, 2 1 2 3, 5 24; white, 4 6 12 18, 2 34; red, 2 11 31 32 33; blue, 5 6 12 18, 1 1; yellow, 1 2 3 4, 2 4; orange, 4 24, 2 17 23 29; cyan, 2 7 8 9 10 13 14 15 16 19 20 21 22 25 26 27 28"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The last three edge-cubies are positioned so that three edges are solved
+      simultaneously.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the inner layer to complete an edge.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Move the completed edge out of the way.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Replace the completed edge with a new edge.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Move the new edge to the original position of the first edge.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the inner layer.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>When completing the final three edges, the orientation of the last three un-solved
+  edge-cubies can be ignored. As long as the edge-cubies are joined to their matching
+  edges, the edge-cubies will be automatically oriented correctly.</p>
+  <p>Building edges may sometimes result in having exactly two remaining edge-cubies on
+  two different edges that must be swapped. To solve this, unsolve the two edges along
+  with another edge and then re-solve the three 'broken' edges simultaneously.</p>
+  <h3><a name='solvecube' id="solvecube">Solve cube</a></h3>
+  <p>After the edges have been built, the cube can be <a href='soln-cube.html'>solved in
+  the same manner as solving a 3x3x3</a> however, in even-cubes a parity issue may
+  occur.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, type: "c", rows: "6", premoves: "1 5 1; 2 5 1; 0 5 1; 1 5 1; 0 0 1; 1 0 1; 2 0 1; 0 5 -1; 1 5 -1; 2 5 -1; 0 5 1; 1 5 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      Solve the cube in the same manner as solving a 3x3x3.
+    </div>
+  </div>
+  <h3><a name='correctparity' id="correctparity">Correct parity</a></h3>
+  <p>A <i>parity</i> issue can arise in even-cubes larger than a 2x2x2. A parity issue
+  occurs when there is a mismatch between the number times that edge-cubies and
+  corner-cubies have been turned. The cube cannot be solved until the parity issue has
+  been corrected.</p>
+  <p>Correcting parity is very easy. Re-solving the cube after parity has been corrected
+  takes a little bit of work.</p>
+  <div class='note'>
+    <twedra-player puzzle='4x4x4' twedra-config=
+    'hideControls: true, stickers: "lawngreen, 2 1 2; white, 4 4 8"'></twedra-player>
+    <div class='expo'>
+      <p>A parity issue on an even cube.</p>
+    </div>
+  </div>
+  <p>Odd-cubes can also have a parity-like issue, but the issue can be entirely avoided
+  if edges are built by starting from the middle edge-cubie and building outwards.</p>
+  <div class='note'>
+    <twedra-player puzzle='5x5x5' twedra-config=
+    'hideControls: true, stickers: "lawngreen, 2 1 3; white, 4 5 15"'></twedra-player>
+    <div class='expo'>
+      A parity-like issue on an odd cube.
+    </div>
+  </div>
+  <p>To fix parity on even-cubes, turn any inner slice, one quarter turn. Doing so will
+  disrupt some completed centers and edges.</p>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'edgeColor: "gray", alg: "2 1 1"'></twedra-player>
+    <div class='expo'>
+      Parity can be fixed by turning an inner layer 'forward'.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'edgeColor: "gray", alg: "2 1 -1"'></twedra-player>
+    <div class='expo'>
+      Parity can be fixed by turning an inner layer 'backward'.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'edgeColor: "gray", alg: "2 1 1; 2 2 1"'></twedra-player>
+    <div class='expo'>
+      If desired, the outer layer can also be turned along with the inner layer.
+    </div>
+  </div>
+  <p>Fixing the parity issue is easy, but the issue can be re-introduced just as easily.
+  Fortunanely, if the move-sequences in this guide are followed, the parity issue will
+  not be re-introduced. (As long as the inner layers are turned an even number of times,
+  the parity issue will not reoccur.)</p>
+  <p>Since the centers and edges were disrupted they must be rebuilt.</p>
+  <div class='note'>
+    <twedra-player puzzle='6x6x6' twedra-config=
+    'edgeColor: "gray", premoves: "2 1 1", alg: "0 0 1; 0 0 1; 2 1 -1; 0 0 1; 0 0 1; 2 1 1; 1 0 1; 1 0 1; 2 1 -1; 1 0 1; 1 0 1; 2 1 1; 0 5 1; 0 5 1; 2 1 -1; 0 5 1; 0 5 1; 2 1 1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Rebuild the centers.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-6</td>
+          <td>Rebuild the green center</td>
+        </tr>
+        <tr>
+          <td>7-12</td>
+          <td>Rebuild the white center</td>
+        </tr>
+        <tr>
+          <td>13-18</td>
+          <td>Rebuild the blue and yellow centers</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Once the centers have been rebuilt, the edges must be rebuilt.</p>
+  <p>After the edges have been rebuilt, the cube can be <a href='soln-cube.html'>solved
+  in the same manner as solving a 3x3x3</a>.</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "twedra",
+  "version": "0.0.1",
+  "description": "Animate twisty puzzles",
+  "main": "polys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tidy": "cd ./src/html && tidy --doctype html5 -quiet --gnu-emacs yes --new-inline-tags twedra-player -indent -wrap 89 -m *",
+    "prettify": "npx prettier --write ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "babel-preset-minify": "^0.5.2"
+  }
+}

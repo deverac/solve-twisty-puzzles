@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>jjcube.html</title>
+  <link rel="stylesheet" href=
+  "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+  <script src=
+  "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script type='text/javascript'>
+  hljs.highlightAll()
+  </script>
+  <link rel='stylesheet' href='jjcube.css'>
+  <script src='jjcube.js'></script>
+</head>
+<body>
+  <h1>jjcube.js</h1>
+  <div class='elab'>
+    jjcube.js generates a perspective projection of an NxNxN cube and is a port of the
+    <a href=
+    'https://ruwix.com/the-rubiks-cube/rubiks-cube-image-generator-icube-picube-josef-jelinek-and-gilles-roux-php-code/'>
+    original PHP code</a> to Javascript. jjcube.js is named after the author of the
+    original PHP code, Josef Jelinek.
+  </div>
+  <div class='elab'>
+    <ul>
+      <li>jjcube.js is a drop-in replacement for the PHP code.</li>
+      <li>All images are generated on the client, rather than the server.</li>
+      <li>Works on any web page. No PHP dependency.</li>
+      <li>Shims were used to allow easy comparison with original PHP source.</li>
+    </ul>
+  </div>
+  <div class='elab'>
+    The following changes have been made.
+  </div>
+  <div class='elab'>
+    <ul>
+      <li>The 'f' parameter, which specifies the image format, is ignored.</li>
+      <li>The restriction on the maximum dimensions of an image was removed.</li>
+      <li>Missing or invalid colors in the 'fl' parameter default to 'x' (gray).</li>
+      <li>The default size was changed to 50 from 100.</li>
+      <li>The original documentation did not list all available colors.</li>
+    </ul>
+  </div>
+  <h2>Instructions:</h2>
+  <div class='elab'>
+    1. Download <a href='jjcube.js'>jjcube.js</a>
+  </div>
+  <div class='elab'>
+    2. Include jjcube.js in your HTML file.
+    <div class='elab'>
+      <pre><code>&lt;script src='jjcube.js'&gt;&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+  <div class='elab'>
+    3. Use an img element with the CSS class 'cube'. The filename (e.g. 'cube.png') is
+    optional and is ignored.
+    <div class='elab'>
+      A) Define the 'data-src' attribute.
+      <pre><code>&lt;img class='cube' data-src="cube.png?fl=wwwwwwwwwgggggggggrrrrrrrrr" /&gt;</code></pre>
+    </div>
+    <div class='elab'>
+      B) Or, define the 'src' attribute. Using the 'src' attribute is discouraged
+      because it causes the browser to attempt to fetch a (non-existent) image from the
+      server. The 'src' attribute is only supported to allow drop-in replacement of the
+      original PHP source.
+      <pre><code>&lt;img class='cube' src="cube.png?fl=wwwwwwwwwgggggggggrrrrrrrrr" /&gt;</code></pre>
+    </div>
+  </div>
+  <h2>Parameters:</h2>
+  <div class='elab'>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>fl</td>
+        <td>String of length (n * n * 3) composed of letters specifing the sticker
+        colors. Available colors: blue (b), lightblue (c), darkgray (d), green (g),
+        black (k), lightgray (l), magenta (m), orange (o), pink (p), red (r), white (w),
+        gray (x), yellow (y). [b, c, d, g, k, l, m, o, p, r, w, x, y] (Default: x)</td>
+      </tr>
+      <tr>
+        <td>bg</td>
+        <td>Hex code of background color. (Default: FFFFFF, white)</td>
+      </tr>
+      <tr>
+        <td>size</td>
+        <td>Image dimensions. (Default: 50)</td>
+      </tr>
+      <tr>
+        <td>n</td>
+        <td>Number of layers in each face. (Default: 3)</td>
+      </tr>
+      <tr>
+        <td>m</td>
+        <td>View angle. [x, y, xy] (Default: none)</td>
+      </tr>
+      <tr>
+        <td>f</td>
+        <td>Format of image. [gif, png, jpeg, jpg] (Default: gif) <b>Ignored in
+        jjcube.js</b></td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>Border width of stickers. [0..200] (Default: 25)</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>Distance between stickers and cube body. [0..100] (Default: 5)</td>
+      </tr>
+    </table>
+  </div>
+  <h2>Examples:</h2>
+  <div class='elab'>
+  <div>
+    No parameters
+  </div><img class='cube' data-src="cube.png?" alt='' src='x'></div>
+  <div class='elab'>
+  <div>
+    fl=wwwwwwgwgogrggggggwrrrrrrrr
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr" alt='' src=
+  'x'></div>
+  <div class='elab'>
+  <div>
+    fl=............wgrobyk..cpmlxd (13 colors)
+  </div><img class='cube' data-src="cube.png?fl=............wgrobyk..cpmlxd" alt='' src=
+  'x'></div>
+  <div class='elab'>
+  <div>
+    m=x, m=y, m=xy
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr&amp;m=x"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr&amp;m=y" alt='' src='x'> <img class='cube'
+  data-src="cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr&amp;m=xy" alt='' src='x'></div>
+  <div class='elab'>
+  <div>
+    n=2, n=4
+  </div><img class='cube' data-src="cube.png?fl=wwwwggggrrrr&amp;n=2" alt='' src='x'>
+  <img class='cube' data-src=
+  "cube.png?fl=wwwwwwwwwwwwwwwwggggggggggggggggrrrrrrrrrrrrrrrr&amp;n=4" alt='' src=
+  'x'></div>
+  <div class='elab'>
+  <div>
+    bg=a0a0cc
+  </div><img class='cube' data-src=
+  "cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr&amp;bg=a0a0cc" alt='' src='x'></div>
+  <div class='elab'>
+  <div>
+    size=25
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwgwgogrggggggwrrrrrrrr&amp;size=25"
+  alt='' src='x'></div>
+  <div class='elab'>
+  <div>
+    b=3, b=90
+  </div><img class='cube' data-src="cube.png?fl=yyyyyygwgogrggggggwrrrrrrrr&amp;b=3"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=yyyyyygwgogrggggggwrrrrrrrr&amp;b=90" alt='' src='x'></div>
+  <div class='elab'>
+  <div>
+    d=0, d=80
+  </div><img class='cube' data-src="cube.png?fl=yyyyyygwgogrggggggwrrrrrrrr&amp;d=0"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=yyyyyygwgogrggggggwrrrrrrrr&amp;d=80" alt='' src='x'></div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>HedgeSlammer</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel='stylesheet' href='soln.css'>
+  <script type='text/javascript' src='twedra.min.js'></script>
+</head>
+<body>
+  <h2>HedgeSlammer</h2>
+  <p>This page illustrates how applying a HedgeSlammer affects edge-cubies and
+  corner-cubies. The HedgeSlammer need not be restricted to a cube. It affects the
+  pieces of other twisty-puzzles in a similar manner.</p>
+  <h3><a name='hedgeslammer' id="hedgeslammer">HedgeSlammer</a></h3>
+  <div class='note'>
+    <twedra-player alg="F R' F' R"></twedra-player>
+    <div class='expo'>
+      The HedgeSlammer.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the Front face clockwise</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Turn the Right face counter-clockwise</td>
+          <td>R'</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Turn the Front face counter-clockwise</td>
+          <td>F'</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Turn the Right face clockwise</td>
+          <td>R</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>The example above used the Front and Right face, but any two adjacent faces can be
+  used. Using the Up face and the Back face are shown below, but notice that no matter
+  which two faces are used, the cube can always be re-oriented so that the Front and
+  Right faces are used.</p>
+  <div class='note'>
+    <twedra-player alg="U B' U' B"></twedra-player>
+    <div class='expo'>
+      HedgeSlammer using the Up and Back faces.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn the Up face clockwise</td>
+          <td>U</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Turn the Back face counter-clockwise</td>
+          <td>B'</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Turn the Up face counter-clockwise</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Turn the Back face clockwise</td>
+          <td>B</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>It is important to know how a HedgeSlammer affects the cube. The effects are
+  illustrated below.</p>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "magenta, 0 0, 1 0 1 2 3 6, 2 0 1 2 5 8, 3 2, 4 0 3 6 7 8, 5 6"'>
+    </twedra-player>
+    <div class='expo'>
+      Exactly seven cubies are affected: four corner-cubies and three edge-cubies.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "magenta, 1 2, 2 8, 5 6; cyan, 0 0, 2 0, 4 0"'></twedra-player>
+    <div class='expo'>
+      Two diagonal corner-cubies in the top layer swap positions.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "magenta, 1 6, 3 2, 4 8; cyan, 1 0, 2 2, 4 6"'></twedra-player>
+    <div class='expo'>
+      Two corner-cubies swap places between the top and bottom layers.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "cyan, 1 1, 2 5; magenta, 1 3, 4 7; black, 2 1, 4 3"'></twedra-player>
+    <div class='expo'>
+      Three edge-cubies move one step counter-clockwise around a common corner-cubie.
+      (Compare the starting and ending positions of the edge-cubies.)
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "red, 1 1; white, 2 4 5"'></twedra-player>
+    <div class='expo'>
+      The edge-cubie on the top face 'flips'. (The edge-cubie starts and ends on the top
+      face and its ending orientation is 'flipped' compared to its starting
+      orientation.)
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "white, 2 1; green, 4 3 4"'></twedra-player>
+    <div class='expo'>
+      The edge-cubie on the front face 'rotates' clockwise. (The edge-cubie starts and
+      ends on the front face and its ending position is 'rotated' about the green center
+      cubie compared to its starting position.)
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'colors: "gray", stickers: "red, 1 3 4; white, 4 7"'></twedra-player>
+    <div class='expo'>
+      The edge-cubie on the right face 'rotates' clockwise. (The edge-cubie starts and
+      ends on the right face and its ending position is 'rotated' about the red center
+      cubie compared to its starting position.)
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2" twedra-config=
+    'colors: "gray", stickers: "green, 4 4 8; red, 1 4 6; yellow, 3 2 4"'></twedra-player>
+    <div class='expo'>
+      Applying HedgeSlammer twice, twists the corner-cubie in the bottom layer. (It also
+      twists other corner-cubies, but they can be ignored.)
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)6" twedra-config></twedra-player>
+    <div class='expo'>
+      Applying HedgeSlammer six times is the same as doing nothing. (All corner-cubies
+      and edge-cubies are returned to their starting positions and orientations.)
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>9-12</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>13-16</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>17-20</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+        <tr>
+          <td>21-24</td>
+          <td>HedgeSlammer</td>
+          <td>F R' F' R</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>This is enough information to solve a scrambled 3x3x3 cube.</p>
+</body>
+</html>

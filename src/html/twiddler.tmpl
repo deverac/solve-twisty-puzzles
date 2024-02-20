@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twiddler</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- TWEDRA_JS_TEMPLATE_STRING -->
+
+  <style>
+    html {
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: black;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      height: 100%;
+    }
+
+    .toggles {
+      width: 10em;
+      height: 5em;
+    }
+  </style>
+  <script type="text/javascript">
+    function parseBool(str) {
+      let s = (str || '').toLowerCase();
+      if (s == "true") return true;
+      if (s == "yes") return true;
+      if (s == "y") return true;
+      if (s == "t") return true;
+      return false;
+    }
+
+    function reloadPlayer() {
+      const cfg = {
+        rearViewMode: 0,
+        bgColor: "",
+        isBgSolid: true,
+        hideControls: true,
+        mainViewSize: (window.innerWidth < window.innerHeight ? window.innerWidth : 0.8 * window.innerHeight),
+        turnSpeed: parseInt(turnSpeed.value),
+        scramble: parseBool(scramble.value),
+        scaleMainPoly: parseFloat(scaleMainPoly.value),
+        name: commonName.value,
+      };
+      player.loadConfig(cfg);
+      rotMode = true; // Set rotMode, but leave swipeMode untouched.
+      updateUi();
+    }
+
+    function addOnChangeHandlers() {
+      const sels = document.getElementsByTagName('select');
+      for (const sel of sels) {
+        sel.onchange = () => reloadPlayer();
+      }
+
+      twister.onclick = twistOnly;
+      rotater.onclick = rotateOnly;
+      swiper.onclick = toggleSwipeMode;
+    }
+
+    function updateUi() {
+      const b1 = rotMode || swipeMode;
+      const b2 = !rotMode || swipeMode;
+      player.setRotatable(b1);
+      player.setTwistable(b2);
+      rotater.style.visibility = (b1 ? 'hidden' : 'visible');
+      twister.style.visibility = (b2 ? 'hidden' : 'visible');
+    }
+
+    function rotateOnly() {
+      rotMode = !rotMode;
+      updateUi();
+    }
+
+    function twistOnly() {
+      rotMode = !rotMode;
+      updateUi();
+    }
+
+    function toggleSwipeMode() {
+      swipeMode = !swipeMode;
+      updateUi();
+    }
+
+    function init() {
+      addOnChangeHandlers();
+      player = TWEDRA_NAME_TEMPLATE_STRING.players[0];
+      reloadPlayer();
+    }
+
+    let player = null;
+    let rotMode = false;
+    let swipeMode = true;
+    window.onload = () => init();
+  </script>
+</head>
+<body>
+  <select id='commonName'>
+    <option value='t2'>
+      Mini Pyraminx
+    </option>
+    <option value='t3'>
+      Pyraminx
+    </option>
+    <option value='t4'>
+      Master Pyraminx
+    </option>
+    <option value='t5'>
+      Professor Pyraminx
+    </option>
+    <option value='t6'>
+      Royal Pyraminx
+    </option>
+    <option value='t7'>
+      Pyraminx 7
+    </option>
+    <option value='t8'>
+      Pyraminx 8
+    </option>
+    <option value='t9'>
+      Pyraminx 9
+    </option>
+    <option value='c2'>
+      Pocket Cube
+    </option>
+    <option value='c3' selected>
+      Cube
+    </option>
+    <option value='c4'>
+      Rubik's Revenge
+    </option>
+    <option value='c5'>
+      Professor's Cube
+    </option>
+    <option value='c6'>
+      6x6x6
+    </option>
+    <option value='c7'>
+      7x7x7
+    </option>
+    <option value='c8'>
+      8x8x8
+    </option>
+    <option value='c9'>
+      9x9x9
+    </option>
+    <option value='o2'>
+      Octo 2
+    </option>
+    <option value='o3'>
+      Octo 3 (FTO)
+    </option>
+    <option value='o4'>
+      Octo 4
+    </option>
+    <option value='o5'>
+      Octo 5
+    </option>
+    <option value='o6'>
+      Octo 6
+    </option>
+    <option value='o7'>
+      Octo 7
+    </option>
+    <option value='o8'>
+      Octo 8
+    </option>
+    <option value='o9'>
+      Octo 9
+    </option>
+    <option value='d2'>
+      Kilominx
+    </option>
+    <option value='d3'>
+      Megaminx
+    </option>
+    <option value='d4'>
+      Master Kilominx
+    </option>
+    <option value='d5'>
+      Gigaminx
+    </option>
+    <option value='d6'>
+      Elite Kilominx
+    </option>
+    <option value='d7'>
+      Teraminx
+    </option>
+    <option value='d8'>
+      Kilominx 8
+    </option>
+    <option value='d9'>
+      Petaminx
+    </option>
+    <option value='d10'>
+      Kilominx 10
+    </option>
+    <option value='d11'>
+      Examinx
+    </option>
+    <option value='i2'>
+      Icosa 2
+    </option>
+    <option value='i3'>
+      Icosa 3
+    </option>
+    <option value='i4'>
+      Icosa 4
+    </option>
+    <option value='i5'>
+      Icosa 5
+    </option>
+    <option value='i6'>
+      Icosa 6
+    </option>
+    <option value='i7'>
+      Icosa 7
+    </option>
+    <option value='i8'>
+      Icosa 8
+    </option>
+  </select> <select id='scramble'>
+    <option value='f' selected>
+      Solved
+    </option>
+    <option value='t'>
+      Scramble
+    </option>
+  </select><br>
+  <select id='turnSpeed'>
+    <option value='0'>
+      Speed 0
+    </option>
+    <option value='1'>
+      Speed 1
+    </option>
+    <option value='2'>
+      Speed 2
+    </option>
+    <option value='3'>
+      Speed 3
+    </option>
+    <option value='5'>
+      Speed 5
+    </option>
+    <option value='10'>
+      Speed 10
+    </option>
+    <option value='15' selected>
+      Speed 15
+    </option>
+    <option value='20'>
+      Speed 20
+    </option>
+    <option value='30'>
+      Speed 30
+    </option>
+    <option value='40'>
+      Speed 40
+    </option>
+  </select> <select id='scaleMainPoly'>
+    <option value='0' selected>
+      Zoom Off
+    </option>
+    <option value='0.40'>
+      Zoom 40
+    </option>
+    <option value='0.42'>
+      Zoom 42
+    </option>
+    <option value='0.44'>
+      Zoom 44
+    </option>
+    <option value='0.46'>
+      Zoom 46
+    </option>
+    <option value='0.48'>
+      Zoom 48
+    </option>
+    <option value='0.50'>
+      Zoom 50
+    </option>
+    <option value='0.52'>
+      Zoom 52
+    </option>
+    <option value='0.54'>
+      Zoom 54
+    </option>
+    <option value='0.56'>
+      Zoom 56
+    </option>
+    <option value='0.58'>
+      Zoom 58
+    </option>
+    <option value='0.60'>
+      Zoom 60
+    </option>
+    <option value='0.62'>
+      Zoom 62
+    </option>
+    <option value='0.64'>
+      Zoom 64
+    </option>
+    <option value='0.66'>
+      Zoom 66
+    </option>
+    <option value='0.68'>
+      Zoom 68
+    </option>
+    <option value='0.70'>
+      Zoom 70
+    </option>
+  </select> <button id='swiper'>Switch Modes</button> <twedra-player></twedra-player>
+  <div>
+    <button id='twister' class='toggles'>Twist</button> <button id='rotater' class=
+    'toggles'>Rotate</button>
+  </div>
+</body>
+</html>

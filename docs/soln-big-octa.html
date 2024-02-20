@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Solve any size octahedron</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel='stylesheet' href='soln.css'>
+  <script type='text/javascript' src='twedra.min.js'></script>
+</head>
+<body>
+  <h2>Solve a octahedron twisty puzzle of any size</h2>
+  <p>This page describes an intutive method of solving a face-turning octahedron of any
+  size. It is not a fast method of solving.</p>
+  <ul>
+    <li>
+      <a href='#octahedron'>Octahedron</a>
+    </li>
+    <li>
+      <a href='#buildcenters'>Build centers</a>
+    </li>
+    <li>
+      <a href='#positioncorners'>Position corners</a>
+    </li>
+    <li>
+      <a href='#orientcorners'>Orient corners</a>
+    </li>
+    <li>
+      <a href='#cornertiles'>Corner tiles</a>
+    </li>
+    <li>
+      <a href='#buildinnerwedges'>Build inner-wedges</a>
+    </li>
+    <li>
+      <a href='#outerwedges'>Outer-wedges</a>
+    </li>
+  </ul>
+  <h3><a name='octahedron' id="octahedron">Octahedron</a></h3>
+  <p>An octahedron has eight faces, but they do not all interact. The eight faces are
+  split into two groups of four faces. The tiles on the faces of each group can be
+  scrambled together, but the tiles can never be scrambled with tiles in the other
+  group.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 3, stickers: "gray, 0 0 1 2 3 4 5 6 7 8, 2 0 1 2 3 4 5 6 7 8, 5 0 1 2 3 4 5 6 7 8, 7 0 1 2 3 4 5 6 7 8;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Only four faces interact. The tiles on gray faces will never land on a colored
+      face and tiles on colored faces will never land on a gray face.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 4, alg: " 3 0 -1; 0 0 1; 3 0 1; 0 0 -1; "'></twedra-player>
+    <div class='expo'>
+      <p>A hedgeSlammer. The turning faces intersect along an edge.</p>
+    </div>
+  </div>
+  <p>Applying HedgeSlammer 60 times (which requires 240 quarter-turns) is the same as
+  doing nothing.</p>
+  <p>Corner pieces on an octahedron do not 'twist', instead, they 'flip' between two
+  different orientations. Any reference to twisting corners should be interpreted to
+  mean 'flipping'.</p>
+  <h3><a name='buildcenters' id="buildcenters">Build centers</a></h3>
+  <p>Building centers is conceptually similar to building centers on a <a href=
+  'soln-big-tetra.html#buildcenters'>tetrahedron</a>.</p><!-- <p>
+Create bars.
+</p>
+
+<p>
+3x3 has no centers.
+</p>
+
+<p>
+4x4 has a single triangle centers.
+</p>
+
+<p>
+5x5 has a single point on traingle center.
+</p>
+
+<p>
+6x6 is and larger.
+With only two faces left.
+</p> -->
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 6, stickers: "magenta, 0 6 11 12 13 18 19 20 21 22, 1 6 11 12 13 18 19 20 21 22, 2 6 11 12 13 18 19 20 21 22, 3 6 11 12 13 18 19 20 21 22, 4 6 11 12 13 18 19 20 21 22, 5 6 11 12 13 18 19 20 21 22, 6 6 11 12 13 18 19 20 21 22, 7 6 11 12 13 18 19 20 21 22"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Centers</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 6, stickers: "magenta, 2 6 18 22; black, 0 6", alg: " 3 3 -1; 0 0 -1; 3 3 1; 0 0 1; 0 2 1;1 2 1;2 2 1;3 2 1;4 2 1;5 2 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Center-tips can easily be swapped with center-tips on another face in the
+      group.</p>
+      <p>Replace a magenta center-tip with the black center-tip.</p>
+    </div>
+  </div><!-- <div class='note'>
+    <twedra-player twedra-config='ptype: "o", rows: 6,
+stickers: "magenta, 2 6 18 22; black, 0 22",
+alg: "
+0 0 1; 3 3 -1; 0 0 -1; 3 3 1; 0 0 1;
+0 2 1;1 2 1;2 2 1;3 2 1;4 2 1;5 2 1;
+"'></twedra-player>
+    <div class='expo'>
+    <p>
+    Magenta tips can easily be swapped with tips on another face in the group.
+    </p>
+    </div>
+</div> -->
+  <p>Left-leaning and right-leaning diamonds can be replaced.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 7, stickers: "magenta, 3 22 32", alg: " 0 1 -1; 1 0 -1; 0 3 -1; 1 0 1; 0 1 1; 1 0 -1; 0 3 1; 1 0 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move a 'left-leaning' magenta diamond from one face to another.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 7, stickers: "magenta, 3 12 13", alg: " 0 1 -1; 1 0 1; 0 3 -1; 1 0 -1; 0 1 1; 1 0 1; 0 3 1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move a 'right-leaning' magenta diamond from one face to another.</p>
+    </div>
+  </div>
+  <p>In both cases above, the blue diamond that is moved to the light-blue face can be
+  ignored. We only need to focus on moving the magenta diamond from the light-blue face
+  to the blue face.</p>
+  <h3><a name='positioncorners' id="positioncorners">Position corners</a></h3>
+  <p>Move three corners to their home positions. This can be done by simply turning
+  faces. The three corners must not all be on the same face. The corners do not need to
+  be oriented correctly but understanding the state of the cube is much easier if they
+  are.</p>
+  <p>For octahedrons that have centers, ensure the corners are positioned on the correct
+  face.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 3, colors: "gray", stickers: "white, 0 8; blue, 1 4 8; lawngreen, 2 4 8; skyblue, 3 4; purple, 4 4 8; yellow, 5 4 8; red, 6 4; orange, 7 8; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Position three corners in a 'line'.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 4, colors: "gray", stickers: "white, 0 6 15; blue, 1 6 9 15; lawngreen, 2 6 9 15; skyblue, 3 6 9; purple, 4 6 9 15; yellow, 5 6 9 15; red, 6 6 9; orange, 7 6 15; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Ensure centers are correct.</p>
+    </div>
+  </div>
+  <p>The remaining three corners can be moved to their correct positions by using
+  HedgeSlammer.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 3, colors: "gray", stickers: "magenta, 0 0, 1 0, 2 0, 3 0; cyan, 0 4, 3 8, 6 8, 7 4; black, 4 0, 5 0, 6 0, 7 0; white, 0 8; blue, 1 4 8; lawngreen, 2 4 8; skyblue, 3 4; purple, 4 4 8; yellow, 5 4 8; red, 6 4; orange, 7 8;", alg: " 3 0 -1; 0 0 1; 3 0 1; 0 0 -1; 5 0 -1; 4 0 1; 5 0 1; 4 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Cycle three (cyan, magenta, black) corners using HedgeSlammer.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>Apply HedgeSlammer then spin 180 degrees</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>Apply HedgeSlammer then spin 180 degrees</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <h3><a name='orientcorners' id="orientcorners">Orient corners</a></h3>
+  <p>Once the corners have been positioned, they must be oriented correctly.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 3, xcolors: "gray", stickers: " gray, 0 1 2 3 5 6 7, 1 1 2 3 5 6 7, 2 1 2 3 5 6 7, 3 1 2 3 5 6 7, 4 1 2 3 5 6 7, 5 1 2 3 5 6 7, 6 1 2 3 5 6 7, 7 1 2 3 5 6 7; magenta, 3 8; black, 3 4", alg: " 0 0 -1; 5 0 1; 0 0 1; 5 0 -1; 4 0 -1; 3 0 1; 4 0 1; 3 0 -1; 4 0 -1; 3 0 1; 4 0 1; 3 0 -1; 0 0 -1; 5 0 1; 0 0 1; 5 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Twist two adjacent corners. The magenta and black corners will be twisted.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td colspan="2">Spin 180 degrees</td>
+        </tr>
+        <tr>
+          <td>5-12</td>
+          <td>Hs2</td>
+        </tr>
+        <tr>
+          <td colspan="2">Spin 180 degrees</td>
+        </tr>
+        <tr>
+          <td>13-16</td>
+          <td>HedgeSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 3, xcolors: "gray", stickers: " gray, 0 1 2 3 5 6 7, 1 1 2 3 5 6 7, 2 1 2 3 5 6 7, 3 1 2 3 5 6 7, 4 1 2 3 5 6 7, 5 1 2 3 5 6 7, 6 1 2 3 5 6 7, 7 1 2 3 5 6 7; magenta, 0 8; black, 3 4; ", alg: " 0 0 -1; 5 0 1; 0 0 1; 5 0 -1; 0 0 -1; 5 0 1; 0 0 1; 5 0 -1; 4 0 -1; 3 0 1; 4 0 1; 3 0 -1; 4 0 -1; 3 0 1; 4 0 1; 3 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Twist two opposite corners. The magenta and black corners will be twisted.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2 then spin 180 degrees</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2 then spin 180 degrees</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Since applying a HedgeSlammer always twists four corners, either method above can
+  be used to correctly orient corners, regardless of whether the twisted corners are
+  adjacent to each other or opposite each other.</p>
+  <p>If you try to twist two adjacent corners using the method which twists two opposite
+  corners, it will result in an octahedron with two opposite corners that are
+  twisted.</p>
+  <p>Similarly, if you try to twist two opposite corners using the method which twists
+  two adjacent corners, it will result in an octahedron with two adjacent corners that
+  are twisted.</p>
+  <h3><a name='cornertiles' id="cornertiles">Corner tiles</a></h3>
+  <p>Solve all corner tiles of the octahedron.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, stickers: "magenta, 0 2 17 23, 1 2 17 23, 2 2 17 23, 3 2 17 23, 4 2 17 23, 5 2 17 23, 6 2 17 23, 7 2 17 23"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Corner tiles of an octahedron.</p>
+    </div>
+  </div>
+  <p>The following method will will work on any size octahedron, but it is not
+  intuitive. The method cycles three corner-tiles without affecting any other tiles.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 3, stickers: "cyan, 0 5; magenta, 2 7; black, 0 2", alg: " 1 1 1; 0 0 1; 1 1 -1; 0 0 -1; 1 1 1; 0 0 1; 1 1 -1; 0 0 -1; 1 1 1; 0 0 1; 1 1 -1; 0 0 -1; 1 1 1; 0 0 1; 1 1 -1; 0 0 -1; 1 1 1; 0 0 1; 1 1 -1; 0 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The cyan, magenta, and block corner tiles will cycle clockwise.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>Modified HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>Modified HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td>9-12</td>
+          <td>Modified HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td>13-16</td>
+          <td>Modified HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td>17-20</td>
+          <td>Modified HedgeSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>On all octahedrons larger than a 3x3, applying a single Modified HedgeSlammer will
+  cycle the cyan, magenta, and black corner tiles anti-clockwise.</p>
+  <p>The following method is an intuitive method of solving the corner-tiles, but only
+  works on octahedrons larger than a 3x3.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 4, colors: "gray", orient: "l 70; u 70", stickers: "blue, 1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; orange, 7 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; magenta, 0 5 6 7 12, 2 5 6 7 12, 5 5 6 7 12; cyan, 3 5 6 7 12, 4 5 6 7 12, 6 5 6 7 12"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Divide the octahedron into a top and bottom. The horizontal blue face is the
+      top face. The horizontal orange face on bottom. with the magenta triangles
+      pointing up and the cyan triangles pointing down.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 4, colors: "gray", stickers: "blue, 1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; orange, 7 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; cyan, 1 2 10 14"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Any of the corner tiles on the top face can be moved to any of the three side
+      faces that touch it points.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 4, colors: "gray", stickers: "blue, 1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; orange, 7 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; purple, 1 10, 3 0 6 9 15", alg: " 3 0 -1; 5 1 1; 3 0 1; 5 1 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the corner tile on the top face to the top corner on the purple face.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'xhideControls: true, ptype: "o", rows: 4, colors: "gray", stickers: "blue, 1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; orange, 7 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; purple, 1 10, 3 0 2 6 9 15", alg: " 0 2 -1; 1 0 1; 0 2 1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the corner tile on the top face to the lower-left corner on the purple
+      face.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'xhideControls: true, ptype: "o", rows: 4, colors: "gray", stickers: "blue, 1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; orange, 7 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; purple, 1 10, 3 0 2 6 9 10 15", alg: " 1 0 1; 5 1 -1; 1 0 -1; 5 1 1 "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the corner tile on the top face to the lower-right corner on the purple
+      face.</p>
+    </div>
+  </div>
+  <p>If the corner tiles on the side faces are not solved, but all the corner tiles on
+  top face have been solved, move one of the unsolved corner tiles from a side face to
+  the top face.</p>
+  <p>Once the corner tiles on all three side faces has been completed, the corner tiles
+  on the top face will have automatically been completed.</p>
+  <p>Flip the cube over making the orange face the top face. Repeat the process of
+  moving the corner-tiles from the top face to their home positions on the three side
+  faces.</p>
+  <h3><a name='buildinnerwedges' id="buildinnerwedges">Build inner-wedges</a></h3>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 6, stickers: "magenta, 0 5 7 10 14 17 23 28 30 32, 1 5 7 10 14 17 23 28 30 32, 2 5 7 10 14 17 23 28 30 32, 3 5 7 10 14 17 23 28 30 32, 4 5 7 10 14 17 23 28 30 32, 5 5 7 10 14 17 23 28 30 32, 6 5 7 10 14 17 23 28 30 32, 7 5 7 10 14 17 23 28 30 32"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Inner-wedges of a octahedron.</p>
+    </div>
+  </div>
+  <p>Even-octahedrons (e.g. 4x4, 6x6) have a central inner-wedges. The central
+  inner-wedges must be solved before the other inner-wedges are solved. Odd-octahedrons
+  (e.g. 5x5, 7x7) do not have central inner-wedges.</p>
+  <p>The inner-wedges can be moved to their home positions by using 'FaceSlammer'. The
+  FaceSlammer is a modified form of HedgeSlammer. Similar turns are performed, but they
+  are performed on a face, rather than along an edge.</p><!-- <div class='note'>
+    <twedra-player twedra-config='ptype: "o", rows: 4,
+alg: "
+1 1 1; 0 2 1; 1 1 -1; 0 2 -1;
+1 1 1; 0 2 1; 1 1 -1; 0 2 -1;
+"'></twedra-player>
+    <div class='expo'>
+    <p>
+    Applying FaceSlammer twice moves five inner-wedges.
+    </p>
+    <table border=1 cellspacing=0>
+       <tr><th>Step</th><th>Desc</th></tr>
+       <tr><td>1-4</td><td>FaceSlammer</td></tr>
+       <tr><td>5-8</td><td>FaceSlammer</td></tr>
+    </table>
+    </div>
+</div> -->
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 4, alg: " 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Applying FaceSlammer six times is the same as doing nothing.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>6-12</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>13-16</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>17-20</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>21-24</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>By strategically turning a face, three central inner-wedges can be cycled.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 4, stickers: "magenta, 2 12; cyan, 5 5; black, 5 12", alg: " 7 0 1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 7 0 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; 1 1 1; 0 2 1; 1 1 -1; 0 2 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Replace the magenta central inner-wedge with the black central inner-wedge. The
+      cyan inner-wedge can be ignored.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn face</td>
+        </tr>
+        <tr>
+          <td>2-5</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Un-turn face</td>
+        </tr>
+        <tr>
+          <td>7-10</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>11-14</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>15-18</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>19-22</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>23-26</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 6, stickers: "magenta, 2 30; cyan, 5 10; black, 5 30", alg: " 7 0 1; 1 2 1; 0 3 1; 1 2 -1; 0 3 -1; 7 0 -1; 1 2 1; 0 3 1; 1 2 -1; 0 3 -1; 1 2 1; 0 3 1; 1 2 -1; 0 3 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>A shortened process can be used on octahedrons that are larger than 4x4.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn face</td>
+        </tr>
+        <tr>
+          <td>2-5</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Un-turn face</td>
+        </tr>
+        <tr>
+          <td>7-10</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>11-14</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>All central inner-wedges (if they exist) should be in their home positions before
+  solving other inner-wedges.</p>
+  <p>Two examples of how to replace an inner-wedge are given below.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 6, stickers: "magenta, 2 23; cyan, 5 28; black, 5 23", alg: " 0 4 -1; 1 0 1; 0 2 1; 1 0 -1; 0 4 1; 1 0 1; 0 2 -1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Replace the magenta inner-wedge with the black inner-wedge. The cyan
+      inner-wedge can be ignored.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 6, stickers: "magenta, 2 7; cyan, 5 32; black, 5 7", alg: " 0 2 -1; 1 0 1; 0 4 1; 1 0 -1; 0 2 1; 1 0 1; 0 4 -1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Replace the magenta inner-wedge with the black inner-wedge. The cyan
+      inner-wedge can be ignored.</p>
+    </div>
+  </div>
+  <h3><a name='outerwedges' id="outerwedges">Outer wedges</a></h3>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "o", rows: 5, stickers: "magenta, 0 1 3 4 8 9 15 18 20 22, 1 1 3 4 8 9 15 18 20 22, 2 1 3 4 8 9 15 18 20 22, 3 1 3 4 8 9 15 18 20 22, 4 1 3 4 8 9 15 18 20 22, 5 1 3 4 8 9 15 18 20 22, 6 1 3 4 8 9 15 18 20 22, 7 1 3 4 8 9 15 18 20 22"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Outer wedges of an octahedron.</p>
+    </div>
+  </div>
+  <p>Odd-octahedrons (e.g. 5x5, 7x7) have central outer-wedges. The central outer-wedges
+  must be solved before the other outer-wedges are solved. Even-octahedrons (e.g. 4x4,
+  6x6) do not have central outer-wedges.</p>
+  <p>The outer-wedges can be moved to their home positions by using 'FaceSlammer'. The
+  FaceSlammer is a modified form of HedgeSlammer. Similar turns are performed, but they
+  are performed on a face, rather than along an edge.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, xstickers: "magenta, 2 15, 3 9; cyan, 1 22, 5 18; black, 3 22, 7 18", alg: " 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Applying a FaceSlammer alters six outer-wedges.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, xstickers: "magenta, 2 15, 3 9; cyan, 1 22, 5 18; black, 3 22, 7 18", alg: " 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Applying FaceSlammer three times is the same as doing nothing.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>9-12</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>By strategically turning a face, three central outer-wedges can be cycled.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, stickers: "magenta, 2 20, 4 20; cyan, 4 8, 5 4; black, 1 20, 5 20", alg: " 7 0 1; 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; 7 0 -1; 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; 1 2 1; 0 2 1; 1 2 -1; 0 2 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Cycle three central outer-wedges clockwise.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn face</td>
+        </tr>
+        <tr>
+          <td>2-5</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Un-turn face</td>
+        </tr>
+        <tr>
+          <td>7-10</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>11-14</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>All central outer-wedges (if they exist) should be in their home positions before
+  solving other outer-wedges.</p>
+  <p>Two examples of how to replace an outer-wedge are given below.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, stickers: "magenta, 2 15, 3 9; cyan, 1 22, 5 18; black, 5 15, 6 9", alg: " 0 3 -1; 1 0 1; 0 1 1; 1 0 -1; 0 3 1; 1 0 1; 0 1 -1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Replace the magenta outer-wedge with the black outer-wedge. The cyan
+      outer-wedge can be ignored.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, stickers: "magenta, 2 3, 3 1; cyan, 1 18, 5 22; black, 5 3, 6 1", alg: " 0 1 -1; 1 0 1; 0 3 1; 1 0 -1; 0 1 1; 1 0 1; 0 3 -1; 1 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Replace the magenta outer-wedge with the black outer-wedge. The cyan
+      outer-wedge can be ignored.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "o", rows: 5, stickers: "magenta, 0 9, 3 15; cyan, 1 18, 5 22; black, 5 3, 6 1", alg: " 3 0 1; 0 1 -1; 1 0 1; 0 3 1; 1 0 -1; 0 1 1; 1 0 1; 0 3 -1; 1 0 -1; 3 0 -1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>If needed, a face can be turned prior to replacing an outer-wedge. The face
+      must be un-turned after the outer-edge has been replaced.</p>
+    </div>
+  </div>
+</body>
+</html>

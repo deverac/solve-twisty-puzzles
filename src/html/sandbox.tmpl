@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Twedra Sandbox</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- TWEDRA_JS_TEMPLATE_STRING -->
+
+  <style>
+      #helpBtn { position: absolute; top: 5px; left: 5px; }
+      #xxhelpText { display: none; position: absolute; top: 20px; left: 20px; background-color: blue; width: 80%; margin: auto auto; border: solid white 4px;}
+      #helpText { display: none; background-color: lightgray; width: 80%; margin: auto auto; border: solid black 4px; padding: 1em; }
+      #helpText p {
+        text-align: left;
+      }
+      body {
+          background-color: lightblue;
+          font-family: sans-serif;
+      }
+      .optsStr tr > td:first-child {font-family: monospace}
+      .optsStr { width: 90%; margin: auto auto; }
+
+      .optsAuto { width: 90%; margin: auto auto; }
+      .optsAuto tr > td:first-child {font-family: monospace}
+      .optsAuto tr > td:first-child + td {text-align: center}
+      .optsAuto tr > td:first-child + td + td {text-align: center}
+
+      p { text-align: center }
+  </style>
+  <script type="text/javascript">
+
+  function getElem(id) {
+    return document.getElementById(id);
+  }
+
+  function parseBool(str) {
+    let s = (str || '').toLowerCase();
+    if (s == "true") return true;
+    if (s == "yes") return true;
+    if (s == "y") return true;
+    if (s == "t") return true;
+    return false;
+  }
+
+  function reloadPlayer() {
+      const cfg = {};
+
+      for (const nm of ['mainViewSize', 'rearViewMode', 'turnSpeed']) {
+          cfg[nm] = parseInt(getElem(nm).value);
+      }
+
+      for (const nm of ['skipAnimate', 'peekThru', 'hideControls', 'isBgSolid', 'preventRotate', 'preventTwist', 'scramble']) {
+          cfg[nm] = parseBool(getElem(nm).value);
+      }
+
+      for (const nm of ['alg', 'bgColor', 'colors', 'edgeColor', 'orient', 'premoves', 'stickers']) {
+          cfg[nm] = getElem(nm).value;
+      }
+
+      for (const nm of ['scaleMainPoly', 'scaleRearView']) {
+          cfg[nm] = parseFloat(getElem(nm).value);
+      }
+
+       const rowVal = parseInt(rows.value.trim());
+       cfg.name = (rowVal ? ptype.value+''+rows.value : commonName.value);
+       player.loadConfig(cfg);
+  }
+
+  function addOnChangeHandlers() {
+    const sels = document.getElementsByTagName('select');
+    for (const sel of sels) {
+        sel.onchange = () => reloadPlayer();
+    }
+    rows.oninput = () => {
+        commonName.disabled = !!parseInt(rows.value.trim());
+        reloadPlayer();
+    }
+    update.onclick = (e) => {
+       reloadPlayer();
+    }
+    helpBtn.onclick = (e) => {
+        helpText.style.display = (helpText.style.display == 'block' ? 'none' : 'block');
+    }
+  }
+
+  function init() {
+    addOnChangeHandlers();
+
+    player = TWEDRA_NAME_TEMPLATE_STRING.players[0];
+
+    reloadPlayer();
+  }
+
+  let player = null;
+
+  window.onload = () => init();
+
+  </script>
+</head>
+<body>
+  <button id='helpBtn'>Help</button>
+  <div id='helpText'>
+    <p>Click the 'Help' button to hide this help text.</p>
+    <p><b>premoves</b> executes the specified turns before displaying the polyhedron. It
+    has the format <i>faceNumber depth direction</i>. Entries must be separated by a
+    semi-colon. 'faceNumber' is zero-based. 'depth' specifies the layer to turn.
+    'direction' must be 1 or -1, which specifies turning clockwise or counter-clockwise.
+    The 'direction' field can be excluded. If the direction field is excluded, the
+    direction is decoded from the 'depth' field; a positive depth turns one way, a
+    negative depth turns the other way.</p>
+    <p><b>alg</b> is the algorithm to execute. It has the format <i>faceNumber depth
+    direction</i>. Entries must be separated by a semi-colon. 'faceNumber' is
+    zero-based. 'depth' specifies the layer to turn. 'direction' must be 1 or -1, which
+    specifies turning clockwise or counter-clockwise. The 'direction' field can be
+    excluded. If the direction field is excluded, the direction is decoded from the
+    'depth' field; a positive depth turns one way, a negative depth turns the other way.
+    An alternative notation can also be used. For convenience, six letters are
+    recognized: F, B, R, L, U, D (for Front, Back, Right, Left, Up, Down). Their inverse
+    (e.g. F') is also recognized. The letters can be grouped by using parethesis and
+    multiplied by appending a number. (e.g. ((F2 D')3)2 ). This notation only makes
+    sense when applied to a cube, but will also turn faces on other polyhedra.</p>
+    <p><b>colors</b> specifies the colors of the faces. It has the format <i>color</i>.
+    One or more colors can be specified. Each color must be separated by whitespace. The
+    color can be a name (e.g. 'red') or a value (e.g. '#800080'). The color string is
+    repeated until all faces of the polygon are colored.</p>
+    <p><b>stickers</b> specifies the colors of the stickers. It has the format <i>color,
+    faceNumber tileNumber tileNumber ..., faceNumber tileNumber tileNumber ...</i> .
+    Entries must be separated by a semi-colon. 'color' is the color to use and can be a
+    name (e.g. 'red') or a value (e.g. '#800080'). 'faceNumber' is zero-based.
+    'tileNumber' specifies the tile number on the face. e.g. 'red, 0 3, 2 4 5' will use
+    red to color tile 3 on face 0, and tile 4, and 5 on face 2.</p>
+    <p><b>orient</b> specifies how the polyhedra should be reoriented. It has the format
+    <i>direction length</i>. Entries must be separated by a semi-colon. 'direction' is
+    the direction to move and must be 'r', 'u', 'l', or 'd' (for right, up, left, down).
+    'length' is the distance to move. Each entry corresponds to a mouse movement which
+    drags the polyhedra.</p>
+  </div>
+  <div style='text-align: center'>
+    <select id='commonName'>
+      <option value='t2'>
+        Mini Pyraminx
+      </option>
+      <option value='t3'>
+        Pyraminx
+      </option>
+      <option value='t4'>
+        Master Pyraminx
+      </option>
+      <option value='t5'>
+        Professor Pyraminx
+      </option>
+      <option value='t6'>
+        Royal Pyraminx
+      </option>
+      <option value='t7'>
+        Pyraminx 7
+      </option>
+      <option value='t8'>
+        Pyraminx 8
+      </option>
+      <option disabled>
+        ──────────
+      </option>
+      <option value='c2'>
+        Pocket Cube
+      </option>
+      <option value='c3'>
+        Cube
+      </option>
+      <option value='c4'>
+        Rubik's Revenge
+      </option>
+      <option value='c5'>
+        Professor's Cube
+      </option>
+      <option value='c6'>
+        6x6x6
+      </option>
+      <option value='c7'>
+        7x7x7
+      </option>
+      <option disabled>
+        ──────────
+      </option>
+      <option value='o2'>
+        Octo 2
+      </option>
+      <option value='o3'>
+        Octo 3
+      </option>
+      <option value='o4'>
+        Octo 4
+      </option>
+      <option value='o5'>
+        Octo 5
+      </option>
+      <option value='o6'>
+        Octo 6
+      </option>
+      <option value='o7'>
+        Octo 7
+      </option>
+      <option disabled>
+        ──────────
+      </option>
+      <option value='d2'>
+        Kilominx
+      </option>
+      <option value='d3'>
+        Megaminx
+      </option>
+      <option value='d4'>
+        Master Kilominx
+      </option>
+      <option value='d5'>
+        Gigaminx
+      </option>
+      <option value='d6'>
+        Elite Kilominx
+      </option>
+      <option value='d7'>
+        Teraminx
+      </option>
+      <option value='d8'>
+        Kilominx 8
+      </option>
+      <option value='d9'>
+        Petaminx
+      </option>
+      <option value='d10'>
+        Kilominx 10
+      </option>
+      <option value='d11'>
+        Examinx
+      </option>
+      <option disabled>
+        ──────────
+      </option>
+      <option value='i2'>
+        Icosa 2
+      </option>
+      <option value='i3'>
+        Icosa 3
+      </option>
+      <option value='i4'>
+        Icosa 4
+      </option>
+      <option value='i5' selected='selected'>
+        Icosa 5
+      </option>
+      <option value='i6'>
+        Icosa 6
+      </option>
+      <option value='i7'>
+        Icosa 7
+      </option>
+      <option value='i8'>
+        Icosa 8
+      </option>
+    </select> <twedra-player></twedra-player>
+  </div>
+  <table class='optsStr'>
+    <tr>
+      <th style='width:10%; white-space: nowrap'>Config Name</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>premoves</td>
+      <td><input id='premoves' type='text' style='width:100%' value='' placeholder=
+      '2 -0; 3 1 1'></td>
+    </tr>
+    <tr>
+      <td>alg</td>
+      <td><input id='alg' type='text' style='width:100%' value='' placeholder=
+      '1 -0; 4 2 -1'></td>
+    </tr>
+    <tr>
+      <td>colors</td>
+      <td><input id='colors' type='text' style='width:100%' value='' placeholder=
+      'red white #800080 blue'></td>
+    </tr>
+    <tr>
+      <td>stickers</td>
+      <td><input id='stickers' type='text' style='width:100%' value='' placeholder=
+      'black, r 1 5, u 3'></td>
+    </tr>
+    <tr>
+      <td>orient</td>
+      <td><input id='orient' type='text' style='width:100%' value='' placeholder=
+      'r 10; u 20; l 30; d 40'></td>
+    </tr>
+  </table>
+  <p><button id='update'>Update</button> Update the viewer with the values above.</p>
+  <hr>
+  <p>Changing the values below will automatically update the viewer.</p>
+  <table class='optsAuto'>
+    <tr>
+      <th style='white-space: nowrap'>Config Name</th>
+      <th>Value</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>hideControls</td>
+      <td><select id='hideControls'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Show or hide controls</td>
+    </tr>
+    <tr>
+      <td>isBgSolid</td>
+      <td><select id='isBgSolid'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Show or hide a checkered background pattern.</td>
+    </tr>
+    <tr>
+      <td>bgColor</td>
+      <td><select id='bgColor'>
+        <option value=''>
+          None
+        </option>
+        <option value='black'>
+          Black
+        </option>
+        <option value='red'>
+          Red
+        </option>
+        <option value='white'>
+          White
+        </option>
+        <option value='blue'>
+          Blue
+        </option>
+        <option value='green'>
+          Green
+        </option>
+        <option value='yellow'>
+          Yellow
+        </option>
+        <option value='lightblue'>
+          Light Blue
+        </option>
+      </select></td>
+      <td>String</td>
+      <td>Background color.</td>
+    </tr>
+    <tr>
+      <td>edgeColor</td>
+      <td><select id='edgeColor'>
+        <option value=''>
+          None
+        </option>
+        <option value='black'>
+          Black
+        </option>
+        <option value='gray'>
+          Gray
+        </option>
+        <option value='pink'>
+          Pink
+        </option>
+      </select></td>
+      <td>String</td>
+      <td>Colors all edges of the polyhedra with the specified color. Ignored for
+      Icosahedron. Also ignored for small polyhedra (such as a 2x2x2 cube).</td>
+    </tr>
+    <tr>
+      <td>mainViewSize</td>
+      <td><select id='mainViewSize'>
+        <option value='100'>
+          100
+        </option>
+        <option value='200'>
+          200
+        </option>
+        <option value='300' selected='selected'>
+          300
+        </option>
+        <option value='400'>
+          400
+        </option>
+        <option value='500'>
+          500
+        </option>
+        <option value='600'>
+          600
+        </option>
+      </select></td>
+      <td>Integer</td>
+      <td>Size of viewer.</td>
+    </tr>
+    <tr>
+      <td>turnSpeed</td>
+      <td><select id='turnSpeed'>
+        <option value='0'>
+          0
+        </option>
+        <option value='1'>
+          1
+        </option>
+        <option value='2'>
+          2
+        </option>
+        <option value='3'>
+          3
+        </option>
+        <option value='5'>
+          5
+        </option>
+        <option value='10' selected='selected'>
+          10
+        </option>
+        <option value='15'>
+          15
+        </option>
+        <option value='20'>
+          20
+        </option>
+        <option value='30'>
+          30
+        </option>
+        <option value='40'>
+          40
+        </option>
+      </select></td>
+      <td>Integer</td>
+      <td>The speed at which a layer is turned. Ignored if 'skipAnimate' is True.</td>
+    </tr>
+    <tr>
+      <td>peekThru</td>
+      <td><select id='peekThru'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Explode stickers</td>
+    </tr>
+    <tr>
+      <td>scramble</td>
+      <td><select id='scramble'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Performs a simple random scamble (not a WCA scramble).</td>
+    </tr>
+    <tr>
+      <td>skipAnimate</td>
+      <td><select id='skipAnimate'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Animate a turning layer.</td>
+    </tr>
+    <tr>
+      <td>preventRotate</td>
+      <td><select id='preventRotate'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Prevent rotations</td>
+    </tr>
+    <tr>
+      <td>preventTwist</td>
+      <td><select id='preventTwist'>
+        <option value='f'>
+          False
+        </option>
+        <option value='t'>
+          True
+        </option>
+      </select></td>
+      <td>Boolean</td>
+      <td>Prevent twists</td>
+    </tr>
+    <tr>
+      <td>rearViewMode</td>
+      <td><select id='rearViewMode'>
+        <option value='0'>
+          None
+        </option>
+        <option value='1'>
+          Side-By-Side
+        </option>
+        <option value='2'>
+          Upper-Right
+        </option>
+      </select></td>
+      <td>Integer</td>
+      <td>Valid values: 0, 1, 2. 0=None, 1=Side-By-Side, 2=Upper-Right</td>
+    </tr>
+    <tr>
+      <td>scaleMainPoly</td>
+      <td><select id='scaleMainPoly'>
+        <option value='0'>
+          Off
+        </option>
+        <option value='0.38'>
+          0.38
+        </option>
+        <option value='0.40'>
+          0.40
+        </option>
+        <option value='0.42'>
+          0.42
+        </option>
+        <option value='0.44'>
+          0.44
+        </option>
+        <option value='0.46'>
+          0.46
+        </option>
+        <option value='0.48'>
+          0.48
+        </option>
+        <option value='0.50'>
+          0.50
+        </option>
+      </select></td>
+      <td>Float</td>
+      <td>0=Off. If set to 0, tetrahedrons will be scaled to slightly overflow the
+      display to allow for easier minipulation.</td>
+    </tr>
+    <tr>
+      <td>scaleRearView</td>
+      <td><select id='scaleRearView'>
+        <option value='0'>
+          Off
+        </option>
+        <option value='0.38'>
+          0.38
+        </option>
+        <option value='0.40'>
+          0.40
+        </option>
+        <option value='0.42'>
+          0.42
+        </option>
+        <option value='0.44'>
+          0.44
+        </option>
+        <option value='0.46'>
+          0.46
+        </option>
+        <option value='0.48'>
+          0.48
+        </option>
+        <option value='0.50'>
+          0.50
+        </option>
+      </select></td>
+      <td>Float</td>
+      <td>0=Off. Ignored unless 'rearViewMode' is 1 (Upper-Right). This value is
+      relative to the value of `scaleMainPoly`. e.g. 0.5 will be half the size of the
+      main polygon.</td>
+    </tr>
+    <tr>
+      <td>ptype</td>
+      <td><select id='ptype'>
+        <option value='t'>
+          Tetrahedron
+        </option>
+        <option value='c'>
+          Cube
+        </option>
+        <option value='o'>
+          Octahedron
+        </option>
+        <option value='d'>
+          Dodecahedron
+        </option>
+        <option value='i'>
+          Icosahedron
+        </option>
+      </select></td>
+      <td>String</td>
+      <td>Valid values: t, c, o, d, i. The type of polyhedra to display. Ignored unless
+      'rows' (below) is specified.</td>
+    </tr>
+    <tr>
+      <td>rows</td>
+      <td><input id='rows' type='text' size="1"></td>
+      <td>Integer</td>
+      <td>The number of rows on a face. Setting it will override the selector at the top
+      of this page. Clear to re-enable the selector. A docecahedron with one row is not
+      allowed.</td>
+    </tr>
+  </table>
+</body>
+</html>

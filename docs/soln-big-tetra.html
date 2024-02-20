@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Solve any size tetrahedron</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel='stylesheet' href='soln.css'>
+  <script type='text/javascript' src='twedra.min.js'></script>
+</head>
+<body>
+  <h2>Solve a tetrahedron twisty puzzle of any size</h2>
+  <p>This page describes an intutive method of solving a tetrahedron of any size. It is
+  not a fast method of solving.</p>
+  <ul>
+    <li>
+      <a href='#buildcenters'>Build centers</a>
+    </li>
+    <li>
+      <a href='#buildinnerwedges'>Build inner-wedges</a>
+    </li>
+    <li>
+      <a href='#positioncorners'>Position corners</a>
+    </li>
+    <li>
+      <a href='#positioninnerwedges'>Position inner-wedges</a>
+    </li>
+    <li>
+      <a href='#orientinnerwedges'>Orient inner-wedges</a>
+    </li>
+    <li>
+      <a href='#orientcorners'>Orient corners</a>
+    </li>
+    <li>
+      <a href='#buildouterwedges'>Build outer-wedges</a>
+    </li>
+  </ul>
+  <h3><a name='buildcenters' id="buildcenters">Build centers</a></h3>
+  <p>When building centers, the color of each face must be correct relative to the other
+  faces. On some tetrahedrons, each face has a fixed center tile, so the color of each
+  face is predetermined. Other tethrahedrons do not have a fixed center tile so the
+  color of each face is not predetermined; any color can be created on any face. On such
+  tetrahedrons the color of a face, relative to the other faces, is determined by the
+  arrangement of colors on the tips of the tetrahedron.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", mainViewSize: 300, ptype: "t", rows: 7, xstickers: "magenta, 2 6 11 13; cyan, 2 12"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Centers of a tetrahedron.</p>
+    </div>
+  </div>
+  <p>When building the centers, the triangular tips of the centers can be ignored
+  because any two of them can be swapped without affecting any other centers. The
+  center-tips do need to be solved, but can be completed last.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'colors: "gray", mainViewSize: 300, ptype: "t", rows: 7, stickers: "black, 2 27; magenta, 1 33; yellow, 0 6 27 33; blue, 1 6 27; green, 2 6 33; red, 3 6 27 33", alg: "3 6 1; 1 2 -1; 3 6 -1; 1 2 1; 3 6 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The black and magenta center-tips will swap positions.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 7, colors: "gray", stickers: "magenta, 2 11 19 20 30 31; cyan, 2 6 12 13 21 22 32 33; black, 2 18 28 29"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Centers are created by constructing a row of color and then moving the row to
+      another face.</p>
+    </div>
+  </div>
+  <p>The first two centers can be built by creating a row of color and then moving the
+  row to another face. This method of building centers is faster than the alternative
+  (shown below) and only works for building the first two centers.</p>
+  <p>For tetrahedrons that have a fixed center tile, the row containing the fixed center
+  tile should be built first and must be built on the face containing the fixed center
+  tile. Once the row is built, there is no need to move the row to another face.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 7, colors: "gray", stickers: "blue, 1 11 27 32, 2 27, 3 12 18 21, 0 6 11 12 13 18 19 20 21 22", alg: "1 3 -1; 3 6 1; 0 6 -1; 1 4 -1; 3 6 -1; 1 4 -1; 3 6 1; 2 6 -1; 1 3 1; 3 6 -1; 2 6 1; 1 5 1; 3 6 1; 1 2 -1; 3 6 -1; 2 5 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Construct a row of color by turning the face containing the row and then adding
+      a triangle to the row by turning a horizontal layer. When the row is complete, the
+      row is moved to the bottom face.</p>
+    </div>
+  </div>
+  <p>Building the second center can be accomplished in a similar manner, but requires a
+  bit more care in order to avoid damaging the first center.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 7, colors: "gray", stickers: "red, 2 6 27 28 29 30, 1 12 31, 0 6 11 12 13 18 19 20 21 22; blue, 3 6 11 12 13 18 19 20 21 22 27 28 29 30 31 32 33", alg: "3 6 1; 1 3 -1; 3 6 1; 1 3 1; 3 6 1; 1 5 -1; 3 6 -1; 1 5 1; 3 6 -1; 0 6 -1; 1 2 1; 0 6 1; 1 2 -1; 0 6 -1; 2 5 -1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>One center has already been built. Construct a row of color and move it to the
+      bottom face. Notice that each time a horizontal layer is turned, it is un-turned
+      in order to restore the completed (blue) center.</p>
+    </div>
+  </div>
+  <p>Once two centers have been completed a different method must be used for building
+  the last two centers. This method will work for building any center, but it is slower
+  than the 'bar building' method described above.</p>
+  <p>This method moves a 'diamond' from one face to another face. The diamond is
+  composed of two triangle tiles.</p>
+  <p>There is a 'left-leaning' diamond and a 'right-leaning' diamond.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'xcolors: "gray", mainViewSize: 300, ptype: "t", rows: 7, stickers: "cyan, 1 11 12", alg: "1 5 -1; 3 6 1; 1 3 -1; 3 6 -1; 1 5 1;3 6 1;1 3 1; 3 6 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move a 'left-leaning' cyan diamond from one face to another.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 7, stickers: "cyan, 1 11 19", alg: "1 5 -1; 3 6 -1; 1 4 -1; 3 6 1; 1 5 1; 3 6 -1; 1 4 1; 3 6 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move a 'right-leaning' cyan diamond from one face to another.</p>
+    </div>
+  </div>
+  <p>In both cases above, the green diamond that is moved to the blue face can be
+  ignored. We only need to focus on moving the cyan diamond from the blue face to the
+  green face.</p>
+  <p>By alternating the type of diamond that is moved and by over-lapping the previous
+  diamond that was moved, individual triangles can be placed in any order desired.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'edgeColor: "gray", mainViewSize: 300, ptype: "t", rows: 7, stickers: "magenta, 1 21; cyan, 1 11; black, 1 31", alg: "1 5 -1; 3 6 -1; 1 4 -1; 3 6 1; 1 5 1; 3 6 -1; 1 4 1; 3 6 1; 0 6 -1; 1 5 -1; 3 6 1; 1 4 -1; 3 6 -1; 1 5 1; 3 6 1; 1 4 1; 3 6 -1; 1 5 -1; 3 6 -1; 1 3 -1; 3 6 1; 1 5 1; 3 6 -1; 1 3 1; 3 6 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Join the cyan, magenta, and black triangles in a row.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Move a right-leaning diamond containing the cyan triangle.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Position the cyan triangle to be moved.</td>
+        </tr>
+        <tr>
+          <td>10-17</td>
+          <td>Move a left-leaning diamond containing the magenta triangle.</td>
+        </tr>
+        <tr>
+          <td>18-25</td>
+          <td>Move a right-leaning diamond containing the black triangle.</td>
+        </tr>
+      </table>
+      <p>Each diamond that was moved, over-lapped the previous diamond that was
+      moved.</p>
+    </div>
+  </div>
+  <p>If the diamond contains a center-tip, the process of moving a left-leaning or
+  right-leaning diamond will not work. Moving a diamond containing a center-tip is
+  technically not necessary but can be accomplished. Center-tips can easily be swapped
+  between any two centers; the other triangle in the diamond can be moved as part of a
+  different diamond.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'edgeColor: "gray", mainViewSize: 300, ptype: "t", rows: 7, stickers: "cyan, 1 27 28", alg: "0 6 -1; 1 5 1; 0 6 1; 1 5 -1; 0 6 -1; 1 5 1; 0 6 1; 1 5 -1; 0 6 1; 1 5 1; 0 6 -1; 1 5 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move a diamond containing a center-tip.</p>
+    </div>
+  </div>
+  <h3><a name='buildinnerwedges' id="buildinnerwedges">Build inner-wedges</a></h3>
+  <p>Building inner-wedges on a tetrahedron is done in a similar manner as <a href=
+  'soln-big-cube.html#buildedges'>building edges on a cube</a>.</p>
+  <p>For tetraherons with odd number of inner-wedges, start from the middle inner-wedge
+  and build out. For tetrahedrons with an even number of inner-wedges, position and
+  orient the edge between its two matching centers before adding an inner-wedge to the
+  edge. This avoids building a 'backward' edge. A backward edge cannot be oriented
+  correctly.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 6, colors: "gray", stickers: "cyan, 0 5 7 10 14 17 23 28 30 32, 1 5 7 10 14 17 23 28 30 32, 2 5 7 10 14 17 23 28 30 32, 3 5 7 10 14 17 23 28 30 32"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Inner-edge-cubies of tetrahedron.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, colors: "gray", stickers: "magenta, 2 32, 3 28; cyan, 2 5, 1 7; yellow, 1 14 23, 2 7; red, 0 5, 2 10 17", alg: "2 2 -1; 0 5 1; 2 5 -1; 0 5 -1; 2 2 1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Add the red-yellow inner-wedge to the edge.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn a layer to add the red-yellow inner-wedge to the edge.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Move the red-yellow edge out of the way</td>
+        </tr>
+        <tr>
+          <td>3-4</td>
+          <td>Replace the red-yellow edge with another edge</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the layer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>For tetrahedrons with an even number of inner-wedges on an edge, ensure that the
+  edge matches the two centers before adding an inner-wedge.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 5, colors: "gray", stickers: "yellow, 2 6 10 11 12 13, 0 5; red, 1 6 11 12 13 14, 2 7", alg: "2 2 -1; 0 4 1; 2 4 -1; 0 4 -1; 2 2 1; 2 4 1; 0 4 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Add the red-yellow inner-wedge to the edge. The edge has an even number of
+      inner-wedges.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn a layer to add the red-yellow inner-wedge to the edge.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Move the red-yellow edge out of the way</td>
+        </tr>
+        <tr>
+          <td>3-4</td>
+          <td>Replace the red-yellow edge with another edge</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn the layer</td>
+        </tr>
+      </table><!-- 
+    <table border=1 cellspacing=0>
+       <tr><th>Step</th><th>Desc</th></tr>
+       <tr><td>1</td><td>Turn a layer to add the red-yellow inner-wedge to the edge.</td></tr>
+       <tr><td>2</td><td>Move the red-yellow edge out of the way</td></tr>
+       <tr><td>3-4</td><td>Replace the red-yellow edge with another edge</td></tr>
+       <tr><td>5</td><td>Un-turn the layer</td></tr>
+       <tr><td>6-7</td><td>(Optional) Return the red-yellow edge.</td></tr>
+    </table> -->
+    </div>
+  </div>
+  <p>For tetrahedrons with an odd number of inner-wedges on an edge, start with the
+  central inner-wedge and build outwards. In the example below, the edge matches the two
+  centers, but this is only done for clarity. For tetrahedrons with an odd number of
+  inner-wedges on an edge, the edge does not need to match the two centers.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, colors: "gray", stickers: "yellow, 0 5, 2 6 10 11 12 13 18 19 20 21 22; red, 1 6 11 12 13 14 18 19 20 21 22, 2 7", alg: "2 2 -1; 0 5 1; 2 5 -1; 0 5 -1; 2 2 1; 2 5 1; 0 5 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Add the red-yellow inner-wedge to the edge. The edge has an odd number of
+      inner-wedges.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Join red-yellow</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Move red-yellow out of the way</td>
+        </tr>
+        <tr>
+          <td>3-4</td>
+          <td>Replace red-yellow with new edge.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Un-turn face</td>
+        </tr>
+        <tr>
+          <td>6-7</td>
+          <td>(Optional) Return the red-yellow edge.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Inner-wedges can be added to the edges one-at-a-time, but just like solving edges
+  on a cube, the last three inner-wedges must be strategically positioned so that they
+  are all solved at the same time.</p>
+  <h3><a name='positioncorners' id="positioncorners">Position corners</a></h3>
+  <p>Move the corners to their home positions. The orientation of the corners is not
+  important and can be ignored.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 5, colors: "gray", stickers: " red, 1 0, 2 2; blue, 0 24, 1 17 ", alg: "2 0 1; 3 0 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>(Optional) Twist all tips so that the color matches their neighbor.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 5, colors: "gray", stickers: " red, 3 12, 0 23; blue, 1 12 17, 0 2, 3 17; lawngreen, 2 12, 1 2 23, 3 2; yellow, 0 12, 2 17 2; ", alg: "1 4 -1; 3 4 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move all corners to their home positions. The orientation of the corners can be
+      ignored. This example uses the green face, but any color face can be used.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn a face so that all three green corners are in the layer with the
+          green center.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Turn the green layer clockwise or anti-clockwise which will move all
+          corners to their home positions.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 6, stickers: "gray, 0 1 3 4 5 7 8 9 10 14 15 16 17 23 24 27 28 29 30 31 32 33, 1 1 3 4 5 7 8 9 10 14 15 16 17 23 24 27 28 29 30 31 32 33, 2 1 3 4 5 7 8 9 10 14 15 16 17 23 24 27 28 29 30 31 32 33, 3 1 3 4 5 7 8 9 10 14 15 16 17 23 24 27 28 29 30 31 32 33"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>(Optional) Twist all corners to match the centers.</p>
+    </div>
+  </div>
+  <p>Twisting the corners to match the centers verifies that all corners are in their
+  home positions. This is only a temporary measure because the next stage of the solve
+  will change the orientations of the corners.</p>
+  <h3><a name='positioninnerwedges' id="positioninnerwedges">Position
+  inner-wedges</a></h3>
+  <p>Use Hs2 to move edges to their home positions.</p>
+  <p>When moving edges to their home positions, their orientation can be ignored because
+  any un-oriented edges will be corrected in the next stage of the solve. However, when
+  moving edges to their home positions, you may wish to also ensure that the edges are
+  oriented correctly because orienting the edges while positioning them takes less work
+  than positioning all edges first and then orienting all the edges.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, orient: "d 125", colors: "gray", stickers: "purple, 1 35, 2 25, 3 35; magenta, 1 28 30 32, 3 7 14 23; cyan, 1 7 14 23, 2 5 10 17; black, 2 28 30 32, 3 28 30 32", alg: "3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 3 5 1; 0 5 -1; 3 5 -1; 0 5 1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Hs2 cycles edges clockwise. The purple tip is only for reference and can be
+      ignored.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>HedgeSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>When Hs2 is applied, all corners are returned to their home positions, but will
+  change orientation.</p>
+  <p>The example below shows one technique for moving edges to their home positions. For
+  clarity, the entire edge is colored. When solving a real tetrahedron only the
+  inner-wedges will be solved. The outer-wedges will not be solved.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 4, stickers: "magenta, 0 1 4 5, 2 3 7 8", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Position (and optionally orient) one edge.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'ptype: "t", rows: 4, mainViewSize: 300, orient: "u 60; l 40", stickers: "magenta, 0 1 4 5, 2 3 7 8; red, 3 3 7 8, 1 11 12 13; cyan, 0 11 12 13, 3 1 4 5; purple, 0 15, 1 9, 3 0 ", colors: "gray", alg: " 2 3 1; 0 3 -1;2 3 -1; 0 3 1; 2 3 1; 0 3 -1;2 3 -1; 0 3 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Pre-stage the cyan and red edges so that when Hs2 is applied they will both be
+      moved to their correct position (and optionally oriented) in the bottom layer.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Hs2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, ptype: "t", rows: 4, mainViewSize: 300, stickers: "black, 1 3 7 8 11 12 13, 2 1 4 5 11 12 13, 3 3 7 8 11 12 13", colors: "gray"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Use Hs2 to position (and optionally orient) the final three edges.</p>
+    </div>
+  </div>
+  <h3><a name='orientinnerwedges' id="orientinnerwedges">Orient inner-wedges</a></h3>
+  <p>Use Hs2 to correctly orient the edges.</p>
+  <p>In order to orient the edges, you must understand how Hs2 affects the edges.</p>
+  <p>In the examples below, the outer wedges have been colored for clarity. When solving
+  a real tetrahedron, only the inner wedges will be solved; the outer wedges wil not be
+  solved.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, orient: "d 125", stickers: "gray, 0 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35, 1 0 1 2 3 4 5 9 10 16 17 24 25 26 27 33 34 35, 2 0 1 2 3 7 8 14 15 16 23 24 25 26 27 33 34 35, 3 0 1 2 3 4 5 9 10 16 17 24 25 26 27 33 34 35; purple, 1 35, 2 25, 3 35", alg: " 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>After applying Hs2, the blue-green edge has 'rotated' counter-clockwise around
+      the green center, the blue-red edge has 'rotated' counter-clockwise around the
+      blue center, and the green-red edge has 'flipped' over the red center.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Hs2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Applying Hs2 three times is the same as doing nothing because all tiles are
+  returned to their starting position and orientation. However, if a 'pivot' is added,
+  then two edges will be flipped. The pivot is covered in much more detail in the
+  <a href='soln-cube.html#orientedges'>solution to the cube</a>.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, orient: "d 125", stickers: "gray, 0 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35, 1 0 1 2 3 4 5 9 10 16 17 24 25 26 27 33 34 35, 2 0 1 2 3 7 8 14 15 16 23 24 25 26 27 33 34 35, 3 0 1 2 3 4 5 9 10 16 17 24 25 26 27 33 34 35; purple, 1 35, 2 25, 3 35", alg: " 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 3 5 1; 0 5 -1; 3 5 -1; 0 5 1; 0 5 1; 2 5 -1; 0 5 -1; 2 5 1; 0 5 1; 2 5 -1; 0 5 -1; 2 5 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Adding a pivot to (Hs2)3 flips the green-red edge and flips the blue-red
+      edge.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Hs2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Hs2</td>
+        </tr>
+        <tr>
+          <td colspan="2">Pivot</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Hs2</td>
+        </tr>
+        <tr>
+          <td colspan="2">Un-pivot</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>By flipping two edges at a time, all un-oriented edges can be oriented
+  correctly.</p>
+  <h3><a name='orientcorners' id="orientcorners">Orient corners</a></h3>
+  <p>Twist the corners to orient them so they match the centers. If necessary, twist the
+  tips so that they match their neighbors.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, stickers: "gray, 0 0 1 2 3 4 8 9 15 16 24 25 26 27 29 31 33 34 35, 1 0 1 2 3 4 8 9 15 16 24 25 26 27 29 31 33 34 35, 2 0 1 2 3 4 8 9 15 16 24 25 26 27 29 31 33 34 35, 3 0 1 2 3 4 8 9 15 16 24 25 26 27 29 31 33 34 35; black, 1 2, 3 26 34; cyan, 0 2, 2 26, 3 2; magenta, 0 26 34, 1 34", alg: " 0 1 -1; 0 0 -1; 2 1 1; 2 0 1; 1 1 1; 1 0 1; 3 1 1; 3 0 1; "'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Twist the corners (and tips) to match the centers.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 6, stickers: "gray, 0 1 3 4 8 9 15 16 24 27 29 31 33, 1 1 3 4 8 9 15 16 24 27 29 31 33, 2 1 3 4 8 9 15 16 24 27 29 31 33, 3 1 3 4 8 9 15 16 24 27 29 31 33"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The centers, inner-edges, corners, and tips are solved.</p>
+    </div>
+  </div>
+  <h3><a name='buildouterwedges' id="buildouterwedges">Build outer-wedges</a></h3>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, mainViewSize: 300, ptype: "t", rows: 6, colors: "gray", stickers: "cyan, 0 1 3 4 8 9 15 16 24 27 29 31 33, 1 1 3 4 8 9 15 16 24 27 29 31 33, 2 1 3 4 8 9 15 16 24 27 29 31 33, 3 1 3 4 8 9 15 16 24 27 29 31 33"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Outer-wedges of tetrahedron.</p>
+    </div>
+  </div>
+  <p>The outer-wedges can be moved to their home positions and oriented correctly by
+  using 'FaceSlammer'. The FaceSlammer is a modified form of a HedgeSlammer. Similar
+  turns are performed, but they are performed on a face, rather than along an edge.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, alg: "0 2 -1; 2 3 1; 0 2 1; 2 3 -1"'></twedra-player>
+    <div class='expo'>
+      <p>FaceSlammer cycles three outer-wedges counter-clockwise and flips two of
+      them.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, alg: "0 2 -1; 2 3 1; 0 2 1; 2 3 -1; 0 2 -1; 2 3 1; 0 2 1; 2 3 -1; 0 2 -1; 2 3 1; 0 2 1; 2 3 -1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>If FaceSlammer is applied three times, it is the same as doing nothing.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>9-12</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, alg: "0 4 -1; 2 1 1; 0 4 1; 2 1 -1"'></twedra-player>
+    <div class='expo'>
+      <p>Another example of FaceSlammer. FaceSlammer cycles three outer-wedges
+      counter-clockwise and flips two of them.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>FaceSlammer</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>In theory, all outer-wedges can be moved to their home positions and oriented
+  correctly using nothing but FaceSlammers, but doing so in practice can be quite
+  difficult. It is much easier to solve the outer-wedges by turning and un-turning a
+  face.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, stickers: "magenta, 0 9, 2 15; black, 0 8, 1 4; cyan, 2 31, 3 29", alg: "0 5 1; 0 2 -1; 2 3 1; 0 2 1; 2 3 -1; 0 5 -1;"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Turning (and un-turning) a face makes solving outer-wedges easier.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Turn face prior to FaceSlammer (Setup)</td>
+        </tr>
+        <tr>
+          <td>2-5</td>
+          <td>FaceSlammer</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Un-turn face (Teardown)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'mainViewSize: 300, ptype: "t", rows: 6, alg: "0 5 1; 0 5 -1; 0 5 -1; 0 5 1; 1 5 1; 1 5 -1; 1 5 -1; 1 5 1; 2 5 1; 2 5 -1; 2 5 -1; 2 5 1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Any face can be turned (and un-turned) to help solve an outer-wedge.</p>
+    </div>
+  </div>
+  <p>If desired, multiple faces can be turned prior to applying FaceSlammer. Any faces
+  that are turned prior to applying FaceSlammer must be un-turned in the reverse order
+  after applying FaceSlammer.</p>
+  <p>Applying FaceSlammer affects three outer-wedges, but it is not necessary to solve
+  all three at once. Outer-wedges can be solved one-at-a-time until three unsolved
+  outer-wedges remain. The last three unsolved outer-wedges must be solved together. It
+  is almost always necessary to temporarily un-solve some outer-wedges in order to
+  maneuver the final three unsolved outer-wedges into a position where they can be
+  solved.</p>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Solve variations</title>
+  <script src='jjcube.js'></script>
+  <link rel='stylesheet' href='jjcube.css'>
+</head>
+<body>
+  <h2>Variations</h2>
+  <div class='elab'>
+    Once you understand how HedgeSlammer affects cubies it can be used to solve the cube
+    in a variety of ways. It's your cube. Solve it however you want.
+  </div>
+  <div class='elab'>
+    <ul>
+      <li>
+        <a href='#anyorder'>Any Order</a>
+      </li>
+      <li>
+        <a href='#onlyhedgeslammers'>Only HedgeSlammers</a>
+      </li>
+      <li>
+        <a href='#layerbylayer'>Layer By Layer</a>
+      </li>
+      <li>
+        <a href='#rdrd'>R'D'RD</a>
+      </li>
+      <li>
+        <a href='#orientcorners'>Orient Corners</a>
+      </li>
+      <li>
+        <a href='#noorbits'>No Orbits</a>
+      </li>
+      <li>
+        <a href='#onesequence'>One Sequence</a>
+      </li>
+      <li>
+        <a href='#reference'>Reference</a>
+      </li>
+    </ul>
+  </div>
+  <h2><a name='anyorder' id="anyorder">Any Order</a></h2>
+  <div class='elab'>
+    Solve the cube in a different order.
+  </div>
+  <div class='elab'>
+    <ul>
+      <li>Position corners, then position edges, then orient edges, then orient
+      corners.</li>
+      <li>Position corners, then position edges, then orient corners, then orient
+      edges.</li>
+      <li>Position corners, then orient corners, then position edges, then orient
+      edges.</li>
+      <li>Position edges, then position corners, then orient edges, then orient
+      corners.</li>
+      <li>Position edges, then position corners, then orient corners, then orient
+      edges.</li>
+      <li>Position edges, then orient edges, then position corners, then orient
+      corners.</li>
+    </ul>
+  </div>
+  <div class='elab'>
+    You may wish to examine the <a href='#reference'>Reference</a> at the end of this
+    document for useful move-sequences.
+  </div>
+  <div class='elab'>
+    If corner-cubies are positioned before edge-cubies, all edge-cubies can be moved to
+    their home positions using nothing but HedgeSlammer.
+  </div>
+  <div class='elab'>
+    If edge-cubies are positioned before corner-cubies, the final two edge-cubies may
+    need to swap places in order to move them to their home positions. In such cases,
+    the two edge-cubies can be swapped using <span class='alg'>(Hs U)3</span>.
+  </div>
+  <h2><a name='onlyhedgeslammers' id="onlyhedgeslammers">Only HedgeSlammers
+  (almost):</a></h2>
+  <div class='elab'>
+    Solve the cube using nothing but HedgeSlammers.
+  </div>
+  <div class='elab'>
+    In other words, no layer should be turned unless it is being turned as part of a
+    HedgeSlammer. Solving the cube in such a manner is possible, but only if the
+    scrambled cube happens to be in a state that allows it. This only happens about 3%
+    of the time.
+  </div>
+  <div class='elab'>
+    If corner-cubies are positioned before edge-cubies, a maximum of three quarter-turns
+    are required in order to get the cube into a state where it can be solved using
+    nothing but HedgeSlammers. The quarter-turns are needed near the beginning of the
+    solve to move the corner-cubies to their home positions. Once all eight
+    corner-cubies have been moved to their home positions, the cube can then be solved
+    using nothing but HedgeSlammers.
+  </div>
+  <h2><a name='layerbylayer' id="layerbylayer">Layer By Layer:</a></h2>
+  <div class='elab'>
+    Solve the cube layer-by-layer (sort of).
+  </div>
+  <div class='elab'>
+    Since HedgeSlammer touches every layer of the cube, solving layer-by-layer in the
+    same manner as <a href=
+    'https://www.speedsolving.com/wiki/index.php/CFOP_method'>CFOP</a> is not really
+    possible, but it can be faked by solving it in a manner similar to the <a href=
+    'https://www.speedsolving.com/wiki/index.php/8355_Method'>8355</a> solution.
+  </div>
+  <h2><a name='rdrd' id="rdrd">R'D'RD</a></h2>
+  <div class='elab'>
+    <span class='alg'>(R' D' R D)</span> is a well-known move-sequence for orienting
+    corner-cubies. It orients corner-cubies in the same manner as <a href=
+    'soln-cube.html#orientcorners'>orienting corner-cubies using Hs2</a>. The
+    move-sequence is applied until a corner-cubie is oriented (which will require either
+    two or four applications), then the upper layer is turned to replace the newly
+    oriented corner-cubies with an un-oriented corner-cubie. This process is continued
+    until the move-sequence has been applied a total of six times.
+  </div>
+  <div class='inf'>
+  <div>
+    <span class='alg'>(R' D' R D)2</span> twists the corner-cubie anti-clockwise. Other
+    cubies are disturbed.
+  </div><img class='cube' data-src='cube.png?fl=ddddddddmddmddddddmdddddddd&amp;size=30'
+  alt='' src='x'></div>
+  <div class='elab'>
+    If orienting corner-cubies in the bottom layer is desired, the move-sequence can be
+    re-written as (F' U' F U).
+  </div>
+  <h2><a name="orientcorners" id="orientcorners">Orient corners</a></h2>
+  <div class='elab'>
+    It is possible to orient corner-cubies using nothing but HedgeSlammer. No other
+    face-turns are required. This is not an intuitive method.
+  </div>
+  <div class='elab'>
+    A <b>pivot</b> re-orients the cube so that the front-right-upper corner-cubie
+    remains the same, but the top changes color. The cube can pivot clockwise
+    (<span class='alg'>Pc</span>) or pivot anti-clockwise (<span class='alg'>Pa</span>).
+  </div>
+  <div class='inf'>
+  <div>
+    The cube (middle) pivoted anti-clockwise (left) and pivoted clockwise (right).
+  </div><img class='cube' data-src="cube.png?fl=ddddrdddlddldwddddldddgdddd&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=ddddwdddlddldgddddldddrdddd&amp;size=30" alt='' src='x'> <img class=
+  'cube' data-src="cube.png?fl=ddddgdddlddldrddddldddwdddd&amp;size=30" alt='' src=
+  'x'></div>
+  <div class='elab'>
+    An <b>orbit</b> is a HedgeSlammer and a clockwise pivot repeated three times in a
+    row: <span class='alg'>(Hs Pc)3</span>. An orbit moves a corner-cubie around the
+    cube in an anti-clockwise 'circle', returning the corner-cubie to its starting
+    location.
+  </div>
+  <div class='inf'>
+  <div>
+    An orbit moves the pink corner-cubie from pink to black to gray and back to pink.
+  </div><img class='cube' data-src="cube.png?fl=ddmdddkddkdddddddlddmdddldd&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    In an orbit, the cube is pivoted clockwise after each HedgeSlammer. If, instead, the
+    cube is pivoted anti-clockwise after each HedgeSlammer (which would move the black
+    corner-cubie in a clockwise 'circle' from black to pink to gray and back to black)
+    all cubies will return to the same position and orientation that they started from.
+    In other words, it's the same as doing nothing at all.
+  </div>
+  <div class='elab'>
+    Applying an orbit will twist a corner-cubie in the bottom layer clockwise. It will
+    also twist two other corner-cubies clockwise and flip two edge-cubies. The five
+    cubies that are affected are shown below.
+  </div>
+  <div class='inf'>
+  <div>
+    An orbit twists the corner-cubies clockwise and flips the edge-cubies.
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwmmmmmmggmggmmrrmrrmrr&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    Applying an orbit two times in a row, <span class='alg'>(Orbit)2</span>, will twist
+    three corner-cubies anti-clockwise without disturbing any other cubies.
+  </div>
+  <div class='inf'>
+  <div>
+    <span class='alg'>(Orbit)2</span> twists corner-cubies anti-clockwise.
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwmwmmgmgggggmmrrrrrmrr&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    When orienting the corner-cubies in the last layer, (Orbit)2 must be applied
+    judiciously in order to achieve the desired effect of orienting all the
+    corner-cubies. Some examples are given below.
+  </div>
+  <div class='inf'>
+  <div>
+    Before and after applying (Orbit)2.
+  </div><img class='cube' data-src="cube.png?fl=bbbbbbbbwwwrwwwgwwbrrrrrrrr&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=bbbbbbwbbowwwwwgwrrrrrrrgrr&amp;size=30" alt='' src='x'></div>
+  <div class='inf'>
+  <div>
+    Before and after applying (Orbit)2.
+  </div><img class='cube' data-src="cube.png?fl=oooooogooowwwwwrwwbbbbbbbbb&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=oooooooobwwowwwrwbwbbbbbrbb&amp;size=30" alt='' src='x'></div>
+  <div class='inf'>
+  <div>
+    Before and after applying (Orbit)2.
+  </div><img class='cube' data-src="cube.png?fl=ggggggrgogwgwwwrwowoooooboo&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=ggggggggwwwowwwrwbgooooowoo&amp;size=30" alt='' src='x'></div>
+  <div class='inf'>
+  <div>
+    Before and after applying (Orbit)2.
+  </div><img class='cube' data-src="cube.png?fl=oooooowobgwowwwgwrwbbbbbwbb&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=oooooogowowbwwwgwwobbbbbbbb&amp;size=30" alt='' src='x'></div>
+  <div class='elab'>
+    In the example below, (Orbit)2 must be applied twice to orient the corner-cubies.
+  </div>
+  <div class='inf'>
+  <div>
+    (Orbit)2 must be applied twice to orient the three corner-cubies.
+  </div><img class='cube' data-src="cube.png?fl=ggggggwgorwgwwwwwowoooooboo&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    If (Orbit)2 is not applied correctly, no progress will be made.
+  </div>
+  <div class='inf'>
+  <div>
+    Before and after applying (Orbit)2.
+  </div><img class='cube' data-src="cube.png?fl=rrrrrrwrwbwgwwwwwwrgggggggg&amp;size=30"
+  alt='' src='x'> <img class='cube' data-src=
+  "cube.png?fl=rrrrrrbrrrwwwwwwwgggggggogg&amp;size=30" alt='' src='x'></div>
+  <div class='elab'>
+    There is no move-sequence that can ever be devised that will twist exactly one
+    corner-cubie.
+  </div>
+  <div class='elab'>
+    A longer, but more intuitive method can be used to orient corner-cubies. When
+    applying an Orbit, if every application of Hs is replaced with Hs3 (e.g.
+    <span class='alg'>(Hs3 Pc)3</span>), the cube will be affected in exactly the same
+    manner as applying (Orbit)2. Applying (Orbit)2 requires 24 quarter-turns and six
+    pivots; applying (Hs3 Pc)3 requires 36 quarter-turns and three pivots.
+  </div>
+  <div class='elab'>
+    HedgeSlammer, (Hs), swaps the pink corner-cubies and also swaps the black
+    corner-cubies. HedgeSlammer applied three times, (Hs3), performs each swap three
+    times.
+  </div>
+  <div class='inf'>
+  <div>
+    Hs swaps the pink corner-cubies and also swaps the black corner-cubies. Hs3 performs
+    each swap three times.
+  </div><img class='cube' data-src="cube.png?fl=ddkdddkdmkdmdddddmmdkdddmdd&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    Applying Hs3 only affects corner-cubies. All edge-cubies are returned to their
+    starting position and orientation.
+  </div>
+  <div class='inf'>
+  <div>
+    Applying Hs3 only affects corner-cubies.
+  </div><img class='cube' data-src="cube.png?fl=wwwwwwwwybgrgggggrgrorrrgrr&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    Applying Hs3 two times in a row is exactly the same as applying Hs6 and will return
+    all cubies to their starting position and orientation. In other words, applying
+    (Hs3)2 is the same as doing nothing.
+  </div>
+  <div class='elab'>
+    When Hs3 is applied, the facelet of a corner-cubie that travels along a (vertical)
+    edge, flips to the adjacent face.
+  </div>
+  <div class='inf'>
+  <div>
+    When traveling along an edge, the facelet of the corner-cubies flips to the adjacent
+    face.
+  </div><img class='cube' data-src="cube.png?fl=dddddddddddrddddddddddddrdd&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    When Hs3 is applied, the facelet of a corner-cubie that travels along a (horizontal)
+    diagonal does not change.
+  </div>
+  <div class='inf'>
+  <div>
+    When traveling along across a face, the facelet of the corner-cubie does not change.
+  </div><img class='cube' data-src="cube.png?fl=ddwdddwdddddddddddddddddddd&amp;size=30"
+  alt='' src='x'></div>
+  <div class='elab'>
+    By applying any number of Hs3 and pivots, a corner-cubie can be dislodged from its
+    home position, moved around the cube and then returned to its home position. The
+    final orientation of any corner-cubie can be determined by mentally tracing the path
+    that the corner-cubie takes. Each time the corner-cubie travels along an edge, the
+    facelet swaps sides and each time the corner-cubie travels across a face, the
+    facelet remains the same.
+  </div>
+  <h2><a name='noorbits' id="noorbits">No Orbits</a></h2>
+  <div class='elab'>
+    If pivoting the cube is not desired, here are two alternate methods that will affect
+    the cube in exactly the same way: <span class='alg'>((FR'F'R) (RU'R'U)
+    (UF'U'F))</span> and <span class='alg'>(Hs U)6</span>. The first method simply turns
+    the same faces that a pivot would. The second method more than doubles the number of
+    turns that a pivot requires. Neither move-sequence requires re-orienting the cube.
+  </div>
+  <h2><a name='onesequence' id="onesequence">One Sequence</a></h2>
+  <div class='elab'>
+    If you have ever wanted to use a single move-sequence to solve the cube,
+    <span class='alg'>(Hs U)</span> could be a candidate. It can be used to solve the
+    cube without needing to use any other face-turns.
+  </div>
+  <div class='elab'>
+    If <span class='alg'>(Hs U)</span> is used along with additional face-turns, then
+    the total number of turns required to solve a cube can be significantly reduced.
+  </div>
+  <table border="1">
+    <tr>
+      <th>Sequence</th>
+      <th>Cube</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>(Hs U)2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dmdmdmkdkkdkdddddkkmddddkdd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Cycles edges anti-clockwise. Cycles corners anti-clockwise. No
+      other cubies move, but do change orientation.</td>
+    </tr>
+    <tr>
+      <td>(Hs U)3</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=mdmddddkddkdddkdddddmkddddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Swap two corners. Swap two edges. No other cubies move but others
+      change orientation.</td>
+    </tr>
+    <tr>
+      <td>(Hs U)6</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddddddllllllddlddllddlddldd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Flips two edges. Twists corners clockwise. No other cubies are
+      disturbed.</td>
+    </tr>
+    <tr>
+      <td>(Hs U)12</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddddddldlldldddddlldddddldd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Twists three corners anti-clockwise. No other cubies are
+      disturbed.</td>
+    </tr>
+  </table>
+  <div class='elab'>
+    <span class='alg'>(Hs U)18</span> will flip two edge-cubies without disturbing any
+    other cubies, but is unneeded since <span class='alg'>(Hs U)6</span> also flips two
+    edge-cubies and is 1/3 as long.
+  </div>
+  <table border="1" cellspacing="0">
+    <tr>
+      <th>Sequence</th>
+      <th>Cube</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td style='white-space: pre'>( ( (Hs U)3 z' (Hs U)3 yy (Hs U)2 yyz )2 xxy )2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dddddmddddddddmddddmdmdmddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Cycles edges anti-clockwise. No other cubies move, but do change
+      orientation.</td>
+    </tr>
+    <tr>
+      <td style='white-space: pre'>( ( (Hs U)3 z (Hs U)3 z'yy (Hs U)4 yy )2 xyy )2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dddmdmdmddmddddddddmddddddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Cycles edges clockwise. Flips two edges. No other cubies move,
+      but do change orientation.</td>
+    </tr>
+    <tr>
+      <td style='white-space: pre'>( (Hs U)3 z' (Hs U)3 z (Hs U)3 )2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddddddmddmdddddmddddddddddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Twists two corners. No other cubies are disturbed.</td>
+    </tr>
+  </table>
+  <div class='elab'>
+    There is nothing particularly special or unique about the <span class='alg'>(Hs
+    U)</span> move-sequence. There are many other 'single sequence' solutions to the
+    cube. For example, the move-sequence <span class='alg'>((R2 U R' U R' U' R U' R2 U'
+    D R' U R D' y)3 y)</span> can also be used to solve a cube without having to use any
+    additional face turns. Additionally, it can be used to solve the cube using any
+    technique that has ever been invented (e.g. layer-by-layer, corners-first,
+    block-building, etc.). The reason is it is able to do so is because it simply turns
+    the top layer of the cube clockwise. In other words, the result of applying the
+    move-sequence achieves exactly the same thing as <span class='alg'>(U)</span>.
+  </div>
+  <div class='inf'>
+  <div>
+    ((R2 U R' U R' U' R U' R2 U' D R' U R D' y)3 y) is the same as (U)
+  </div><img class='cube' data-src='cube.png?fl=wwwwwwwwwrrrggggggbbbrrrrrr&amp;size=30'
+  alt='' src='x'></div>
+  <h2><a name='reference' id="reference">Reference</a></h2>
+  <div class='elab'>
+    Hs = HedgeSlammer = (FR'F'R)<br>
+    Pc = Pivot clockwise = (xy)<br>
+    Orbit = (Hs Pc)3<br>
+    Fc = Flip cube = (xxy)<br>
+  </div>
+  <table border="1">
+    <tr>
+      <th>Sequence</th>
+      <th>Cube</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Hs</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddkddckcmkcmddcddmmckcddmdd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Swaps black corners. Swaps pink corners. Cycles edges
+      anti-clockwise.</td>
+    </tr>
+    <tr>
+      <td>Hs2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddkddckcmkcmddcddmmckcddmdd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Twists black corners anti-clockwise. Twists pink corners
+      clockwise. Cycles edges clockwise.</td>
+    </tr>
+    <tr>
+      <td>Hs3</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddwdwdwdybdrdgdddrgdodrdgdd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Swaps diagonal corners. Swaps vertical corners. Swaped corners
+      stay oriented relative to each other. No other cubies are disturbed.</td>
+    </tr>
+    <tr>
+      <td>Orbit</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddddddllllllddlddllddlddldd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Twists corners clockwise. Flips edges. No other cubies are
+      disturbed.</td>
+    </tr>
+    <tr>
+      <td>Orbit2</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=ddddddldlldldddddlldddddldd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Twists corners clockwise. No other cubies are disturbed.</td>
+    </tr>
+    <tr>
+      <td>Orbit3</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dddddddlddldddlddddddlddddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Flips edges. No other cubies are disturbed.</td>
+    </tr>
+    <tr>
+      <td>Hs4 Fc Hs2 Fc Hs2 Fc Hs4 Fc</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dddddddmddmdddmdmddddmddddd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Cycle edges clockwise. Edges stay oriented relative to each
+      other. No other cubies are disturbed.</td>
+    </tr>
+    <tr>
+      <td>Hs2 Fc Hs4 Fc Hs4 Fc Hs2 Fc</td>
+      <td><img class='cube' data-src=
+      "cube.png?fl=dddddmddddddddmddddmdmdddmd&amp;size=20" alt='' src='x'></td>
+      <td class='elab'>Cycle edges anti-clockwise. Edges stay oriented relative to each
+      other. No other cubies are disturbed.</td>
+    </tr>
+  </table>
+  <div class='elab'>
+    <a href='jjcube.html'>jjcube.js</a> was used to generate cube images on this page.
+  </div>
+</body>
+</html>

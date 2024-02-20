@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Solve the cube</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel='stylesheet' href='soln.css'>
+  <script type='text/javascript' src='twedra.min.js'></script>
+</head>
+<body>
+  <h2>Solve a 3x3x3 cube</h2>
+  <p>This page describes a method of solving a 3x3x3 cube.</p>
+  <p>This solution requires freely re-orienting the cube during the solve. This is
+  unlike the typical beginner's method which holds the cube in a fixed orientation.</p>
+  <ul>
+    <li>
+      <a href='#introduction'>Introduction</a>
+    </li>
+    <li>
+      <a href='#solve'>Solve the cube</a>
+    </li>
+    <ul>
+      <li>
+        <a href='#positioncorners'>Position Corners</a>
+      </li>
+      <li>
+        <a href='#positionedges'>Position Edges</a>
+      </li>
+      <li>
+        <a href='#orientedges'>Orient Edges</a>
+      </li>
+      <li>
+        <a href='#orientcorners'>Orient Corners</a>
+      </li>
+    </ul>
+    <li>
+      <a href='#summary'>Summary</a>
+    </li>
+  </ul>
+  <h3><a name='introduction' id="introduction">Introduction</a></h3>
+  <p>Many methods have been devised to solve a 3x3x3 cube. Methods have been designed
+  for <a href='https://www.speedsolving.com/wiki/index.php/Main_Page'>speed</a>,
+  <a href='https://ruwix.com/the-rubiks-cube/fmc-fewest-move-count-challenge-method-tips/'>
+  fewest moves</a>, <a href=
+  'https://ruwix.com/the-rubiks-cube/how-to-solve-the-rubiks-cube-blindfolded-tutorial/'>
+  blindfolded</a>, <a href=
+  'https://www.speedsolving.com/wiki/index.php?title=One-Handed_Solving'>one handed</a>,
+  and more. The intent of this method is to provide an intuitive solution to solving the
+  cube. When given a scrambled cube, most people are able to solve a single face without
+  any help. They do so by observing how the cube is affected when a face is turned and
+  then applying what they learn in order to complete a face. It is hoped that this
+  solution will provide insight so that the whole cube can be solved in a similar
+  manner.</p>
+  <p>The typical beginner's method for solving a cube has several move-sequences (a.k.a.
+  <i>algorithms</i> in cubing terminology) that must be memorized. The move-sequences
+  are relatively short, but there is no apparent logic for why the move-sequences were
+  chosen or how they work. This results in a situation where the cube is directing the
+  solve and the human is just a Mechanical Turk that must carry out a series of
+  seemingly arbitrary face-turns. If the human executes the face-turns correctly, the
+  cube will be moved into a new state which will dictate a different series of seemingly
+  arbitrary face-turns that must be used. This will continue until the cube is solved.
+  To some degree, this process is true for every method of solving the cube, including
+  this one. The difference is that this method provides a 'tool' for manipulating the
+  cube in a useful manner. It is up to the human to apply the 'tool' in various ways to
+  solve the cube. This allow the human to tell the cube what to do, rather than the cube
+  telling the human what to do.</p>
+  <p>As with every solution, there are advantages and disadvantages.</p>
+  <p><b>Advantages:</b></p>
+  <ul>
+    <li><b>Understandable</b>. The goal is to solve the cube in a reasoned manner.</li>
+    <li><b>Buildable</b>: New move-sequences build on earlier move-sequences.</li>
+    <li><b>Conjugate-free</b>: 'Setup' and 'teardown' moves are not required, but can be
+    used.</li>
+    <li><b>Eager</b>: The hard work is done first, which makes solving later stages
+    almost trivial.</li>
+    <li><b>Mono-move</b>: A single move-sequence is used. No left, right, or mirrored
+    move-sequences are needed.</li>
+    <li><b>Forgiving</b>: The cube can often be returned to its starting state simply by
+    repeating a move-sequence.</li>
+    <li><b>One-handed</b>: The solution can be performed using one hand without too much
+    difficulty.</li>
+  </ul>
+  <p><b>Disadvantages:</b></p>
+  <ul>
+    <li><b>Slow</b>: A solve takes about eight minutes.</li>
+    <li><b>Repetitive</b>. The solution uses the same four-turn move-sequence over, and
+    over, and over.</li>
+    <li><b>Topless</b>: There is no fixed top. The entire cube must be re-oriented
+    multiple times during the solve.</li>
+    <li><b>Speckled</b>: Edge-cubies and corner-cubies are positioned without orienting
+    them. This results in a jumble of colors which makes it difficult to locate cubies
+    or identify the state of the cube.</li>
+  </ul>
+  <p>In most examples, especially in the beginning stages, cubies are shown correctly
+  oriented in their home positions. This is only done for the sake of clarity. When
+  solving a real cube the cubies will almost never be oriented as depicted.</p>
+  <p>Many examples animate turning the layers of a cube. In all animations, the act of
+  re-orienting the cube is never shown. Instead, the cube is held stationary and
+  different faces are turned as if the cube were re-oriented. When solving a real cube,
+  it is usually easier to physically re-orient the cube and turn the Front and Right
+  faces, rather than hold the cube stationary and turn different faces. Either method
+  will work.</p>
+  <p>If you are unfamiliar with the cube, it may help to <a href='soln-cube.html'>learn
+  about it</a>.</p>
+  <p>The cube will be solved in four steps:</p>
+  <ol>
+    <li>Move all eight corner-cubies to their home positions, ignoring their
+    orientation.</li>
+    <li>Move all twelve edge-cubies to their home positions, ignoring their
+    orientation.</li>
+    <li>Orient all twelve edge-cubies.</li>
+    <li>Orient all eight corner-cubies.</li>
+  </ol>
+  <p>A 'tool' will be used to help solve the cube. The 'tool' is a four-turn sequence
+  named <i><a href='soln-hs.html'>HedgeSlammer</a></i>. For this guide, the HedgeSlammer
+  should be thought of as a single, indivisible move. Once a HedgeSlammer has begun,
+  nothing else should happen until the HedgeSlammer is complete.</p>
+  <p>When solving a cube, if a wrong face is turned, or if a face is turned the wrong
+  direction, there are two ways to correct the error. One way to correct the error is to
+  un-turn the face. The other way to correct the error is to turn the face three more
+  times. Both methods will return the face to exactly the same state it was in prior to
+  the incorrect face turn.</p>
+  <p>Similarly, if you accidentally apply HedgeSlammer too many times, or start a
+  HedgeSlammer in the wrong place, there are two ways to correct the error. One way to
+  correct the error is to reverse every unintented turn that was made. The HedgeSlammer
+  is a simple move-sequence, so reversing it is not too difficult. The other way to
+  correct the error is to continue applying HedgeSlammers until a total of six
+  HedgeSlammers have been applied. Applying six HedgeSlammers in a row will return the
+  cube to its starting state. In other words, applying six HedegSlammers accomplishes
+  exactly the same thing as doing nothing.</p>
+  <p>A HedgeSlammer can be applied to any two faces that intersect, regardless of the
+  orientation of the cube. To perform a HedgeSlammer, first choose any two faces that
+  intersect, then turn the first face clockwise, then turn the second face
+  counter-clockwise, then un-turn the first face (i.e. turn it counter-clockwise), then
+  un-turn the second face (i.e. turn it clockwise). Prior to applying a HedgeSlammer, it
+  is usually easier to reorient the cube so that the first face that is turned is the
+  Front face and the second face that is turned is the Right face.</p>
+  <p>It is technically possible to solve the cube using nothing but HedgeSlammers along
+  with a total of three additional quarter-turns of a face. The three quarter-turns are
+  needed to position the corner-cubies correctly. Once the eight corner-cubies are in
+  their home positions, the remainder of the solve can be accomplished using nothing
+  other than HedgeSlammers; no additional face turns are required. The method for doing
+  so is not covered here.</p>
+  <p>The HedgeSlammer move-sequence (F R' F' R) has a mirror move-sequence (R' F R F')
+  named <i>SledgeHammer</i>. The SledgeHammer could also be used to solve the cube, but
+  minor adjustments would need to be made. For example, if SledgeHammer were used,
+  edge-cubies would cycle in the opposite direction, and corner-cubies would twist in
+  the opposite direction. This guide will only use HedgeSlammer and will never use
+  SledgeHammer.</p>
+  <h3><a name='positioncorners' id="positioncorners">Position corner-cubies</a></h3>
+  <p>The cube has eight corner-cubies - four in the top layer and four in the bottom
+  layer - that must be moved to their home positions. The orientation of the
+  corner-cubies when they are in their home positions is not important.</p>
+  <p>Choose any face of the cube and orient the cube to make that face the top layer.
+  During the process of moving corner-cubies to their home locations, the top layer will
+  never change. However, in later stages of the solve, the top layer will frequently
+  change.</p>
+  <p>Move three three corner-cubies to their home positions in the top layer using any
+  method you desire. (If the top layer already contains the four corner-cubies in their
+  home locations, then move any one of the corner-cubies into the bottom layer. After
+  doing so, ensure the other three corner-cubies in the top layer are in their home
+  positions.)</p>
+  <p>Rotate the bottom layer so that the fourth corner-cubie is directly below its home
+  position in the top layer. Apply a HedgeSlammer to move the fourth corner-cubie from
+  the bottom layer into its home position in the top layer. This will also swap two
+  diagonal corner-cubies in the top layer.</p>
+  <div class='note'>
+    <twedra-player alg="F R' F' R" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 0 4 6 8, 4 8; green, 4 0 4, 3 2; red, 1 2 4 6; blue, 5 0 4 6; orange, 0 0 2"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Three corner-cubies are in their home positions in the top layer. Move the
+      fourth corner-cubie into its home position in the top layer by applying a
+      HedgeSlammer.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+      </table>
+      <p>For clarity, the corner-cubies are shown oriented, but the corner-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <p>Applying a HedgeSlammer to move the fourth corner-cubie to its home position is
+  convenient, but not required. Any method can be used to move the four corner-cubies
+  into the top layer as long as the end result is that two diagonal corner-cubies are in
+  their home positions and two diagonal corner-cubies are not in their home
+  positions.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 0 2 4 6 8; green, 4 6 4, 5 6; red, 1 0 4, 0 0; blue, 5 0 4, 4 0; orange, 0 2 4, 1 2"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>In the top layer, two diagonal corner-cubies are in their home positions and
+      two diagonal corner-cubies are not in their home positions.</p>
+      <p>For clarity, the corner-cubies are shown oriented, but their orientation does
+      not matter.</p>
+    </div>
+  </div>
+  <p>Since the four corner-cubies that belong in the top layer have been moved to the
+  top layer, it necessarily means that the four remaining corner-cubies all belong in
+  the bottom layer.</p>
+  <p>Turn the bottom layer any number of turns, in any direction until no corner-cubie
+  is in its home position in the bottom layer.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "green, 4 4, 1 6 8; red, 1 4, 5 2 8; blue, 5 4, 0 6 8; orange, 0 4, 4 2 8; yellow, 3 0 2 4 6 8"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Turn the bottom layer so that none of the corner-cubies are in their home
+      positions.</p>
+      <p>For clarity, the corner-cubies are shown oriented and in the correct order
+      (relative to each other), but the corner-cubies do not need to be oriented or in
+      the correct order.</p>
+    </div>
+  </div>
+  <p>There are four corner-cubies in the bottom layer that are not in their home
+  positions and they are now ready to be moved to their home positions. Each
+  corner-cubie in the bottom layer will be moved to its home position by moving the
+  corner-cubie up into the top layer, rotating the top layer, and then moving the
+  corner-cubie back down into the bottom layer. Use the following procedure to move the
+  four corner-cubies in the bottom layer to their home positions:</p>
+  <ol>
+    <li>Recall that HedgeSlammer swaps two corner-cubies along a vertical edge.</li>
+    <li>Use HedgeSlammer to move a corner-cubie from the bottom layer into the top
+    layer.</li>
+    <li>Rotate the top layer until the corner-cubie is directly above its home position
+    in the bottom layer.</li>
+    <li>Use HedgeSlammer to move the corner-cubie from the top layer into its home
+    position in the bottom layer.</li>
+    <li>The previous step will have moved a new corner-cubie into the top layer.</li>
+    <li>If all corner-cubies in the bottom layer are in their home positions, then STOP,
+    otherwise go to step 3.</li>
+  </ol>
+  <p>Once all corner-cubies in the bottom layer have been moved to their home positions,
+  examine the four corner-cubies in the top layer. If the four corner-cubies in the top
+  layer are not in their home positions, rotate the top layer so that they are.</p>The
+  final turn of the top layer in order to return the corner-cubies to their home
+  positions only needs to be done if a 'wrong' corner-cubie was moved to the bottom
+  layer in Step 2 of the procedure above. If a 'correct' corner-cubie was used in Step
+  2, the final turn of the top layer would not be needed. It doesn't matter whether a
+  'wrong' or 'correct' corner-cubie was used, because it is trivial to turn the top
+  layer, if a 'wrong' corner-cubie was used. (A 'wrong' corner-cubie is either of the
+  two corner-cubies that were initially not in their home position in the top layer. )
+  <p>For clarity, the example below shows the corner-cubies in the bottom layer oriented
+  and in the correct order (relative to each other), but none of the corner-cubies in
+  the bottom layer need to be oriented or in the correct order (relative to each
+  other).</p>
+  <div class='note'>
+    <twedra-player alg=
+    "D (F R' F' R) U (L F' L' F) U (B L' B' L) U (R B' R' B) U (F R' F' R)"
+    twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 0 2 4 6 8; green, 4 2 4 6 8, 5 6; red, 1 0 4 6 8, 0 0; blue, 5 0 2 4 8, 4 0; orange, 0 2 4 6 8, 1 2; yellow, 3 0 2 4 6 8"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Move the four corner-cubies in the bottom layer to their home positions.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Ensure no corner-cubies in the bottom layer are in their home
+          positions</td>
+          <td>D</td>
+        </tr>
+        <tr>
+          <td>2-5</td>
+          <td>Apply HedgeSlammer to move green-orange-yellow corner-cubie into the top
+          layer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Turn the top layer to move green-orange-yellow corner-cubie directly above
+          its home position</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>7-10</td>
+          <td>Apply HedgeSlammer to move green-orange-yellow corner-cubie to its home
+          position in the bottom layer. The blue-orange-yellow corner-cubie will also be
+          moved into the top layer</td>
+          <td>(L F' L' F)</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Turn the top layer to move blue-orange-yellow corner-cubie directly above
+          its home position</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>12-15</td>
+          <td>Apply HedgeSlammer to move blue-orange-yellow corner-cubie to its home
+          position in the bottom layer. The blue-red-yellow corner-cubie will also be
+          moved into the top layer</td>
+          <td>(B L' B' L)</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>Turn the top layer to move blue-red-yellow directly above its home
+          position</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>17-20</td>
+          <td>Apply HedgeSlammer to move blue-red-yellow to its home position in the
+          bottom layer. The green-orange-yellow corner-cubie will also be moved to the
+          top layer.</td>
+          <td>(R L' R' L)</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td>Turn the top layer to move green-orange-yellow directly above its home
+          position</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>22-25</td>
+          <td>Apply HedgeSlammer to move green-orange-yellow to its home position in the
+          bottom layer. The green-red-white corner-cubie will also be moved to the top
+          layer.</td>
+          <td>(F R' F' R)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>When moving corner-cubies in the bottom layer to their home positions, do not
+  follow the example above verbatim. The example above only works when all corner-cubies
+  in the bottom layer are in order, relative to each other. When a bottom corner-cubie
+  is in the top layer, the top layer must be turned so that the corner-cubie is directly
+  above its home position in the bottom layer. This will require one or two
+  quarter-turns in either direction.</p>
+  <p>The cube should now have all eight corner-cubies in their home positions.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 0 2 4 6 8; green, 4 0 2 4 6 8; red, 1 0 2 4 6 8; blue, 5 0 2 4 6 8; orange, 0 0 2 4 6 8; yellow, 3 0 2 4 6 8"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>All eight corner-cubies are in their home positions.</p>
+      <p>For clarity, the corner-cubies are shown oriented, but the corner-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <p>The task of positioning the eight corner-cubies is now complete. One or more
+  (usually many) of the corner-cubies will not be oriented correctly. Orienting the
+  corner-cubies will occur in a later stage of the solve.</p>
+  <p>The process described above for moving the eight corner-cubies into their home
+  positions will always work. If desired, one of two optional variations can be used.
+  The advantage of using a variation is that 83% of the time (5 of 6 cases), it will be
+  simpler and faster. The disadvantage is that it will not work 17% of the time (1 of 6
+  cases).</p>
+  <ol>
+    <li>Configure the four corner-cubies in the top layer in the usual manner (two
+    diagonal corner-cubies in their home positions and two diagonal corner-cubies not in
+    their home positions). Once completed, instead of turning the bottom layer so that
+    no corner-cubies are in their home position, turn the bottom layer so that exactly
+    two corner-cubies are in their home position. This will not be possible in the case
+    where all four corner-cubies in the bottom layer are in order, relative to each
+    other.</li>
+    <li>Instead of configuring the four corner-cubies in the top layer in the usual
+    manner (two diagonal corner-cubies in their home positions and two diagonal
+    corner-cubies not in their home positions) configure the four corner-cubies in the
+    top layer so that they are all in their home positions. If the bottom layer can be
+    turned so that all four corner-cubies are in their home positions, then nothing more
+    needs to be done. Otherwise, turn the bottom layer so that exactly one corner-cubie
+    is in its home position (the other three corner-cubies will necessarily not be in
+    their home positions). This will not be possible in the case where the bottom layer
+    has two diagonally opposite corner-cubies that are in their home positions and two
+    diagonally opposite corner-cubies that are not in their home positions.</li>
+  </ol>
+  <p>In either case above, move the corner-cubies in the bottom layer to their home
+  positions in the usual manner. (i.e. Move the corner-cubie into the top layer using
+  HedgeSlammer, then rotate the top layer until it is directly above its home position,
+  then use HedgeSlammer to move it into the bottom layer.)</p>
+  <h3><a name='positionedges' id="positionedges">Position edge-cubies</a></h3>
+  <p>Once all eight corner-cubies have been moved to their home positions, all twelve
+  edge-cubies must be moved to their home positions.</p>
+  <p>Applying HedgeSlammer swaps two horizontal corner-cubies in the top layer and also
+  swaps two vertical corner-cubies. From this, we can deduce that if HedgeSlammer is
+  applied two times in a row, both pairs of corner-cubies will swap places a second time
+  and be returned to the same position they were at before the first HedgeSlammer was
+  applied.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2" twedra-config=
+    'stickers: "gray, 0 1 3 5 7, 1 1 3 5 7, 2 1 3 5 7, 3 1 3 5 7, 4 1 3 5 7, 5 1 3 5 7"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>If HedgeSlammer is performed twice, all corner-cubies are returned to their
+      starting positions. Their starting and ending orientations will differ, but should
+      be ignored.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>Apply HedgeSlammer once</td>
+          <td>(F R' F' R)</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>Apply HedgeSlammer again</td>
+          <td>(F R' F' R)</td>
+        </tr>
+      </table>
+      <p>For clarity, the corner-cubies are shown oriented, but the corner-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <p>It does not matter how the cube is oriented, applying HedgeSlammer two times in a
+  row always returns all corner-cubies to the same positions they started from.</p>
+  <p>From this point forward, <i>always</i> apply HedgeSlammer two times in a row. This
+  will ensure that the corner-cubies do not change their positions. After applying
+  HedgeSlammer two times in a row, the ending orientation of the corner-cubies will
+  differ from their starting orientation, but the orientation of the corner-cubies
+  should be ignored.</p>
+  <p>For the sake of brevity, applying HedgeSlammer two times in a row will be denoted
+  as 'Hs2'.</p>
+  <p>If we examine how applying HedgeSlammer affects edge-cubies, we see that it moves
+  three edge-cubies one step counter-clockwise in a three-step cycle. From this, we can
+  deduce that if HedgeSlammer is applied three times in a row, the three edge-cubies
+  will be returned to their starting position.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)3" twedra-config=
+    'colors: "gray", stickers: "pink, 2 1, 4 3"'></twedra-player>
+    <div class='expo'>
+      <p>Each time HedgeSlammer is applied, the edge-cubie moves one step
+      counter-clockwise in a three-step cycle.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+        <tr>
+          <td>9-12</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Since we must always apply HedgeSlammer two times in a row it means that each time
+  we apply Hs2, the edge-cubies will be moved two steps 'forward' in a counter-clockwise
+  direction. Since the edge-cubies move in a three-step cycle, this is the same as
+  moving one step 'backwards'. In other words, applying Hs2 causes the edge-cubies to
+  move one step clockwise in a three-step cycle.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2" twedra-config=
+    'colors: "gray", stickers: "pink, 2 1, 4 3"'></twedra-player>
+    <div class='expo'>
+      <p>Hs2 moves the edge-cubie one step clockwise in a three-step cycle.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-4</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+        <tr>
+          <td>5-8</td>
+          <td>HedgeSlammer</td>
+          <td>(F R' F' R)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>By re-orienting the cube as needed and then applying Hs2, all edge-cubies can be
+  moved to their home positions.</p>
+  <p>When moving edge-cubies, focus on one edge-cubie at a time and move it to its home
+  position one step at a time by re-orienting the cube and then applying Hs2. If an
+  edge-cubie is a long way from its home position, re-orienting the cube and then
+  applying Hs2 must be done several times.</p>
+  <div class='note'>
+    <twedra-player alg="(D R' D' R)2 (F R' F' R)2 (F R' F' R)2 (R B' R' B)2"
+    twedra-config=
+    'colors: "gray", stickers: "white, 2 4, 4 5; blue, 5 4, 3 1"'></twedra-player>
+    <div class='expo'>
+      <p>Move an edge-cubie to its home position by re-orienting the cube and applying
+      Hs2.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(D R' D' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>25-32</td>
+          <td>Apply Hs2</td>
+          <td>(R B' R' B)2</td>
+        </tr>
+      </table>
+      <p>For clarity, the edge-cubie is shown oriented in its home position, but the
+      edge-cubie does not need to be oriented.</p>
+    </div>
+  </div>
+  <p>When moving edge-cubies to their home positions, do not think of the cube as having
+  a fixed orientation. The cube should be freely re-oriented in whatever way is needed
+  in order to move edge-cubies to where they need to go. (Do not re-orient the cube
+  while applying Hs2, only re-orient the cube after applying Hs2. e.g. Apply Hs2, then
+  re-orient, then apply Hs2, then re-orient, then apply Hs2, etc.)</p>
+  <p>Do not be concerned about the orientation of the edge-cubies. The edge-cubies only
+  need to be moved to their home positions. Orienting the edge-cubies at this stage of
+  the solve is optional, but can be done, if desired. Orienting the edge-cubies will be
+  done in the next stage of the solve.</p>
+  <p>Each layer of the cube has four edge-cubies. When three edge-cubies have been moved
+  to their home positions, you will find that it is impossible to move the fourth
+  edge-cubie to its home position without dislogding one of the three edge-cubies. There
+  are two methods for solving this issue: Pre-staging and Setup-Teardown.</p>
+  <p>Pre-staging and Setup-Teardown solve the same problem in different ways. The
+  problem and solution is illustrated below.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 3 4 5 7, 1 3; green, 4 4 7; red, 1 1 4; blue, 5 3 4; orange, 0 1 4"'>
+    </twedra-player>
+    <div class='expo'>
+      <p><b>Problem:</b> Three edge-cubies in the top layer are in their home positions.
+      Appling Hs2 will move the green-white edge-cubie to its home position in the top
+      layer but will also dislodge the red-white edge-cubie from its home position.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+      <p>For clarity, three edge-cubies are shown oriented, but the edge-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 3 4 7, 4 3 7, 1 3; green, 4 4 7; red, 1 4, 2 1; blue, 5 3 4; orange, 0 1 4"'>
+    </twedra-player>
+    <div class='expo'>
+      <p><b>Solution 1: Pre-stage</b> The red-white edge-cubie has been intentionally
+      pre-staged in the wrong position. When Hs2 is applied, the red-white edge-cubie
+      and the green-white edge-cubie will both move one step clockwise, thus moving them
+      into their home positions.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+      <p>For clarity, two edge-cubies are shown oriented, but the edge-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="F (D R' D' R)2 F'" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 3 4 5 7, 1 3; green, 4 4 7; red, 1 1 4; blue, 5 3 4; orange, 0 1 4; pink, 4 3, 2 1"'>
+    </twedra-player>
+    <div class='expo'>
+      <p><b>Solution 2: Setup-Teardown</b> The Front face is turned to move the pink and
+      green-white edge-cubies to a 'safe' location, away from the top layer. Hs2 is
+      applied and then the Front face is un-turned.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Setup (Move pink and green-white edge-cubie out of the way)</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>2-9</td>
+          <td>Apply Hs2</td>
+          <td>(D R' D' R)2</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Teardown (Undo the Setup)</td>
+          <td>F'</td>
+        </tr>
+      </table>
+      <p>For clarity, three edge-cubies are shown oriented, but the edge-cubies do not
+      need to be oriented.</p>
+    </div>
+  </div>
+  <p>Pre-staging is slow, but there is no danger of destroying past progress due to
+  forgetting to do Teardown or doing Teardown incorrectly. Setup-Teardown can move
+  edge-cubies to desired locations faster, but will undo past progress if done
+  improperly.</p>
+  <p>Below are two more examples of how Setup-Teardown (a.k.a. <a href=
+  'https://ruwix.com/the-rubiks-cube/commutators-conjugates/'>Conjugate</a>) can be
+  used.</p>
+  <div class='note'>
+    <twedra-player alg="U2 (F R' F' R)2 U' U'" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 4; green, 4 4, 2 3; red, 1 4, 0 1; blue, 5 4; orange, 0 4; cyan, 2 6, 0 2, 5 0"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The green-red edge-cubie will be moved to its home position.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-2</td>
+          <td>Setup (Move green-red to desirable location)</td>
+          <td>U U</td>
+        </tr>
+        <tr>
+          <td>3-10</td>
+          <td>Apply Hs2 to move green-red clockwise</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>11-12</td>
+          <td>Teardown (Undo the Setup)</td>
+          <td>U' U'</td>
+        </tr>
+      </table>
+      <p>The cyan corner-cubie is only to illustrate that it is returned to its starting
+      position.</p>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="U' (F R' F' R)2 U" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 4, 1 3; green, 4 4; red, 1 4; blue, 5 4; orange, 0 4, 4 7; cyan, 2 6, 0 2, 5 0"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The orange-white edge-cubie will be moved to its home position.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-2</td>
+          <td>Setup (Rotate the top layer to receive the orange-white edge-cubie)</td>
+          <td>U'</td>
+        </tr>
+        <tr>
+          <td>3-10</td>
+          <td>Apply Hs2 to move the orange-white edge-cubie clockwise</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>11-12</td>
+          <td>Teardown (Undo the Setup)</td>
+          <td>U</td>
+        </tr>
+      </table>
+      <p>The cyan corner-cubie is only to illustrate that it is returned to its starting
+      position.</p>
+    </div>
+  </div>
+  <p>There are no restrictions on the moves for the Setup. The Setup can turn any number
+  of faces any number of turns, however, it is critical that the Teardown undo all of
+  the Setup moves in the reverse order. In practice, turning one face a quarter-turn is
+  typically all that is needed for Setup.</p>
+  <p>There is a lot of freedom in how the edge-cubies can be moved to their home
+  positions. When moving edge-cubies to their home locations, there is no correct order
+  to place the edge-cubies.</p>
+  <h3><a name='orientedges' id="orientedges">Orient edge-cubies</a></h3>
+  <p>At this point, all corner-cubies are in their home positions and all edge-cubies
+  are in their home positions. The cube is still scrambled, but it is closer to being
+  solved than it might, at first, appear.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    "premoves: &quot;(R' F' R F)4 (F U F' U')2 (L B L' B')4 (D' B' D B)4 &quot;, hideControls: true">
+    </twedra-player>
+    <div class='expo'>
+      The cube is scrambled, but every cubie is in its home position.
+    </div>
+  </div>
+  <p>When moving the edge-cubies to their home positions, applying Hs2 caused three
+  edge-cubies to move one step clockwise in a three-step cycle. From that fact, we can
+  deduce that if Hs2 is applied three times, the three edge-cubies will return to their
+  starting positions. It is not so easy to deduce the ending orientations of the
+  edge-cubies, but their ending orientations can be discovered by applying Hs2 three
+  times in a row and observing how the edge-cubies are affected.</p>
+  <p>If Hs2 is applied three times in a row we find that the ending orientations of the
+  three edge-cubies exactly matches their starting orientations. Since the edge-cubies
+  start and end in the same positions, and since their start and end orientations are
+  the same, we can see that applying Hs2 three times in a row accomplishes exactly the
+  same thing as doing nothing. (This should not be too much of a surprise since applying
+  Hs2 three times is exactly the same as applying HedgeSlammer six times.)</p>
+  <p>That discovery is not useful in orienting the edge-cubies, however, if we add a
+  <i>pivot</i> to the mix, something useful happens.</p>
+  <p>Pivoting the cube clockwise is defined as re-orienting the cube so that the Up face
+  becomes the Right face and the Right face becomes the Front face.</p>
+  <div class='note'>
+    <twedra-player twedra-config='hideControls: true'></twedra-player>
+    <twedra-player twedra-config=
+    'hideControls: true, colors: "yellow white lawngreen blue red orange"'></twedra-player>
+    <div class='expo'>
+      The cube is pivoted clockwise.
+    </div>
+  </div>
+  <p>Pivoting the cube counter-clockwise is defined as re-orienting the cube so that the
+  Up face becomes the Front face and the Front face becomes the Right face.</p>
+  <div class='note'>
+    <twedra-player twedra-config='hideControls: true'></twedra-player>
+    <twedra-player twedra-config=
+    'hideControls: true, colors: "blue lawngreen red orange white yellow"'></twedra-player>
+    <div class='expo'>
+      The cube is pivoted counter-clockwise.
+    </div>
+  </div>
+  <p>Pivoting clockwise twice is the same as pivoting counter-clockwise once. Pivoting
+  counter-clockwise twice is the same as pivoting clockwise once.</p>
+  <p>Pivoting the cube is simply rotating the cube 120 degrees about an axis. The axis
+  is defined by two corner-cubies. The first corner-cubie is located at the intersection
+  of the Front, Right, and Up layers. The second corner-cubie is located at the
+  intersection of the Back, Left, and Down layers (which is physically farthest away
+  from the first corner-cubie).</p>
+  <p>No matter which direction the cube is pivoted (clockwise or counter-clockwise),
+  applying Hs2 always and only affects the same seven cubies. And no mater how the cube
+  is pivoted, each time Hs2 is applied it will always cause the same three edge-cubies
+  to cycle one step clockwise. (Note that none of the animations below show the cube
+  being pivoted. Instead different faces are rotated as if the cube were pivoted.)</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (U F' U' F)2 (R U' R' U)2" twedra-config=
+    'colors: "gray", stickers: "magenta, 0 0, 1 0 1 2 3 6, 2 0 1 2 5 8, 3 2, 4 0 3 6 7 8, 5 6"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Pivoting the cube does not alter the cubies that Hs2 acts upon.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot counter-clockwise</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>Below is a list of pivot sequences. The list illustrates every possible way that
+  pivoting can be combined with three applications of Hs2. The reason that Hs2 is
+  applied three times is because it ensures that the three edge-cubies are returned to
+  their starting locations. The list is for illustrative purposes only and can be
+  ignored; there is no need to memorize this list.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)6" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      No edge-cubies are flipped.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)4 (R U' R' U)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Up face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)4 (U F' U' F)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Right face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (U F' U' F)4" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Up face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (R U' R' U)4" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Front face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (R U' R' U)2 (F R' F' R)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Right face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (U F' U' F)2 (F R' F' R)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Front face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (R U' R' U)2 (U F' U' F)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      No edge-cubies are flipped.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube counter-clockwise</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 (U F' U' F)2 (R U' R' U)2" twedra-config=
+    'edgeColor: "gray", stickers: "white, 2 1 4 5; green, 4 7 4 3; red, 1 1 3 4; blue, 5 4; orange, 0 4; pink, 2 2,4 6, 1 0"'>
+    </twedra-player>
+    <div class='expo'>
+      Flips two edge-cubies on Right face.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(U F' U' F)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>As the nine illustrations above show, no matter which way the cube is pivoted, or
+  how often the cube is pivoted, only two outcomes are possible: either two edge-cubies
+  will be flipped (on the Up, Front, or Right face) or no changes will occur.</p>
+  <p>By flipping two edge-cubies at a time, all edge-cubies can be correctly
+  oriented.</p>
+  <p>Due to the physical construction of the cube, there is no sequence of turns that
+  can ever be devised which will flip exactly one edge-cubie. Edge-cubies can only be
+  flipped in pairs. This means that there will always be an even number of edge-cubies
+  that must be flipped in order to have all edge-cubies be oriented correctly.</p>
+  <p>Of the nine pivot sequences above, eight contain pivots and one contains no pivots.
+  As previously discovered, if no pivots are performed then no edge-cubies are flipped.
+  Since our goal is to orient edge-cubies by flipping them, we can discard the sequence
+  containing no pivots. The remaining eight pivot sequences each contain one or more
+  pivots. Of those eight, seven of them flip two edge-cubies and one of them flips no
+  edge-cubies.</p>
+  <p>What this means is that, as long as you make sure to pivot at least once (and apply
+  Hs2 three times), there is a 7/8 = 87.5% chance of flipping two edge-cubies. If you
+  happen to apply the pivot sequence that flips no edge-cubies, then the cube will be in
+  the same state that it started.</p>
+  <p>Unfortunately, there is no 'intuitive' way to know which pivot sequence will flip
+  which edge-cubies. Here are several options for how to flip two edge-cubies:</p>
+  <ul>
+    <li>Use knowledge about how Hs2 affects edge-cubies. (See the boxed example below.)
+    Each time Hs2 is applied, three edge-cubies move one step clockwise. One edge-cubie
+    starts and ends on the Front face; one edge-cubie starts and ends on the Up face;
+    one edge-cubie starts and ends on the Right face. The edge-cubies on the Front and
+    Right faces 'rotate' about the center-cubie, while the edge-cubie in the Up face
+    'flips'. After applying Hs2 twice, examine the edge-cubies. The next (third)
+    application of Hs2 will return all three edge-cubies to their home positions. Prior
+    to applying Hs2 for the third time, pivot the cube clockwise or counter-clockwise.
+    Pivoting changes the Front, Right, and Up faces, and thus controls which two
+    edge-cubies are 'rotated' into their home positions and which edge-cubie is
+    'flipped' into its home position.</li>
+    <li>While solving a cube, try a random pivot sequence and note which two edge-cubies
+    flip.
+      <ul>
+        <li>If you happen to apply the pivot sequence: (Hs2 PivotCounterClockwise Hs2
+        PivotCounterClockwise Hs2 PivotCounterClockwise) then no edge-cubies will be
+        flipped. This does not move the cube closer to being solved, but neither does it
+        undo any progress that has already been made.</li>
+        <li>If you happen to apply any of the other seven pivot sequences then two
+        edge-cubies will be flipped on the Front, Up, or Right face. You now know a
+        pivot sequence that will flip two edge-cubies as well as the face where the
+        flipping occurs.</li>
+      </ul>
+    </li>
+    <li>Memorize one of the seven pivot sequences above which flips two edge-cubies.
+    Having to memorize an arbitrary pivot sequence goes against the spirit of this
+    solution, but will work to orient all the edge-cubies.</li>
+    <li>Apply a random pivot sequence. If it does not flip the two desired edge-cubies,
+    then repeat the pivot sequence. Repeating a pivot sequence will undo the previous
+    pivot sequence. After the cube has been restored, apply a different random pivot
+    sequence. If the two desired edge-cubies are still not flipped, repeat the previous
+    pivot sequence. Repeating the pivot sequence will undo the previous pivot sequence.
+    Continue in this manner until the two desired edge-cubies are flipped. This
+    technique is not recommended, but will eventually work.</li>
+  </ul>
+  <p>Once you know a pivot sequence that flips two edge-cubies and the face where the
+  flipping occurs, the cube can be re-oriented so that any two edge-cubies can be
+  flipped.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 4, 4 3, 1 1; green, 4 4 7, 2 1; red, 1 3 4, 2 5; blue, 5 4; orange, 0 4"'>
+    </twedra-player> <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 1 4, 2 5, 4 7; green, 2 1 4, 1 1; red, 4 3 4, 1 3; blue, 5 4; orange, 0 4"'>
+    </twedra-player> <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 4 4, 1 3, 2 1; green, 1 1 4, 4 7; red, 2 4 5, 4 3; blue, 5 4; orange, 0 4"'>
+    </twedra-player>
+    <div class='expo'>
+      The cube can be pivoted to move any two edge-cubies to the Front, Right, or Up
+      face.
+    </div>
+  </div>
+  <div style='border: solid 1px white; margin: 1em; padding: 1em'>
+    <p><b>Example:</b> Flip two edge-cubies.</p>
+    <p>By using knowledge about how Hs2 affects edge-cubies we can flip two edge-cubies.
+    To begin, we automatically apply Hs2, twice.</p>
+    <div class='note'>
+      <twedra-player alg="(F R' F' R)4" twedra-config=
+      'edgeColor: "gray", stickers: "white, 2 4, 4 3, 1 1; green, 4 4 7, 2 1; red, 1 3 4, 2 5; blue, 5 4; orange, 0 4"'>
+      </twedra-player>
+      <div class='expo'>
+        <table border="1" cellspacing="0">
+          <tr>
+            <th>Step</th>
+            <th>Desc</th>
+            <th>Alg</th>
+          </tr>
+          <tr>
+            <td>1-8</td>
+            <td>Apply first Hs2</td>
+            <td>(F R' F' R)2</td>
+          </tr>
+          <tr>
+            <td>9-16</td>
+            <td>Apply second Hs2</td>
+            <td>(F R' F' R)2</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p>If we apply Hs2 for a third time, the three edge-cubies will be returned to their
+    starting position and orientation. This is not useful. If we pivot the cube before
+    applying the third Hs2, then we know that two edge-cubies will be flipped. However,
+    it is not obvious which way to pivot or which edge-cubies will be flipped.</p>
+    <p>Whenever Hs2 is applied, it 'rotates' the edge-cubie on the Front face
+    counter-clockwise, and 'rotates' the edge-cubie on the Right face counter-clockwise,
+    and 'flips' the edge-cubie on the Up face. Knowing this, we can pivot the cube in
+    such a manner so that the action of applying Hs2 for a third time will manipulate
+    the three edge-cubies in a desirable way.</p>
+    <div class='note'>
+      <twedra-player alg="(F R' F' R)2" twedra-config=
+      'colors: "gray", stickers: "white, 1 4 1, 2 1; green, 2 4, 4 3, 1 3; red, 4 4 7, 2 5"'>
+      </twedra-player>
+      <div class='expo'>
+        <p>The cube is pivoted and Hs2 is applied for the third time. The green-red
+        edge-cubie 'rotates' about the red center of the Front face. The red-white
+        edge-cubie 'rotates' about the white center on the Right face. The green-white
+        edge-cubie 'flips' in the Up face.</p>
+        <table border="1" cellspacing="0">
+          <tr>
+            <th>Step</th>
+            <th>Desc</th>
+            <th>Alg</th>
+          </tr>
+          <tr>
+            <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+          </tr>
+          <tr>
+            <td>1-8</td>
+            <td>Apply third Hs2</td>
+            <td>(F R' F' R)2</td>
+          </tr>
+          <tr>
+            <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p>The green-white edge-cubie and the red-white edge-cubie have been flipped.</p>
+  </div>
+  <p>When orienting edge-cubies, you do not have to worry too much about losing any
+  progress that has been made. The worst that can happen when applying a pivot sequence
+  is that two unwanted edge-cubies will flip. If you did not want those two particular
+  edge-cubies to be flipped, simply repeat the previous pivot sequence. Repeating a
+  pivot sequence will 'un-flip' whatever edge-cubies the previous pivot sequence
+  flipped.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 4, 4 3, 1 1; green, 4 4, 1 3, 2 1; red, 1 4, 2 5, 4 7; blue, 5 4; orange, 0 4"'>
+    </twedra-player>
+    <div class='expo'>
+      Three edge-cubies need to be flipped. Any pivot sequence (except one) will flip
+      two of the edge-cubies. In some cases it may be advantageous to control which two
+      edge-cubies are flipped.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 4, 4 3, 1 1; green, 4 4 7, 2 1; red, 1 3 4, 2 5; blue, 5 4; orange, 0 4"'>
+    </twedra-player>
+    <div class='expo'>
+      Two edge-cubies need to be flipped. If needed, the cube can be re-oriented to move
+      the edge-cubies to the Front or Right face prior to applying a pivot sequence.
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 4 5, 4 3; green, 4 4 7, 2 1; red, 1 1 3 4; blue, 5 4; orange, 0 4"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>One edge-cubie needs to be flipped. It is impossible to flip exactly one
+      edge-cubie.</p>
+      <p>If some cases, the green-white edge-cubie can be paired with another unflipped
+      edge-cubie on the Left face. In some cases it may be desirable to flip the
+      green-white and red-white edge-cubie. (This will orient the green-white
+      edge-cubie, but un-orient the red-white edge-cubie.) In some cases it may be
+      desirable to flip the green-white and green-red edge-cubie. (This will orient the
+      green-white edge-cubie, but un-orient the green-red edge-cubie.)</p>
+    </div>
+  </div>
+  <p>There is no correct order for flipping edge-cubies, but some orders require less
+  work than other orders.</p>
+  <div class='note'>
+    <twedra-player twedra-config=
+    'hideControls: true, edgeColor: "gray", stickers: "white, 2 4, 4 3, 1 1; green, 4 4, 1 3, 2 1, 3 1; red, 1 4, 2 5, 4 7; blue, 5 4; orange, 0 4; yellow, 4 5"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>It is better to flip the green-white and red-white edge-cubies together and
+      then flip the green-red and green-yellow edge-cubies together (or vice-versa).</p>
+      <p>If the green-red and green-white edge-cubies are flipped together, or if the
+      green-red and red-white edge-cubies are flipped together, then the green-yellow
+      edge-cubie will be 'disconnected' from the remaining un-flipped edge-cubie.</p>
+    </div>
+  </div>
+  <p>Setup-Teardown can be used to pair edge-cubies so that they can be flipped
+  together.</p>
+  <div class='note'>
+    <twedra-player alg="F (F R' F' R)4 (R U' R' U)2 F'" twedra-config=
+    'stickers: "red, 2 5; white, 1 1; orange, 4 1; green, 4 0 2 3 4 5 6 7 8, 0 3; gray, 1 0 2, 2 2 8, 4 6, 5 6"'>
+    </twedra-player>
+    <div class='expo'>
+      Flip the green-orange and red-white edge-cubies.
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Setup (Pair the two edge-cubies.)</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>2-9</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>10-17</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Pivot cube clockwise</td>
+        </tr>
+        <tr>
+          <td>18-25</td>
+          <td>Apply Hs2</td>
+          <td>(R U' R' U)2</td>
+        </tr>
+        <tr>
+          <td colspan="3" style='text-align: center'>Un-pivot cube</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td>Teardown</td>
+          <td>F'</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <h3><a name='orientcorners' id="orientcorners">Orient corner-cubies</a></h3>
+  <p>When orienting edge-cubies we found that applying Hs2 three times in a row returns
+  all edge-cubies to their starting position and orientation. Applying Hs2 three times
+  in a row also returns all corner-cubies to their starting position and
+  orientation.</p>
+  <div class='note'>
+    <twedra-player alg="((F R' F' R)2)3" twedra-config=
+    'colors: "gray", stickers: "white, 2 0 1 2 4 5 8; green, 4 0 3 4 6 7 8; red, 1 0 1 2 3 4 6; yellow, 3 2 4; orange, 0 0 4; blue, 5 4 6"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Applying Hs2 three times returns all cubies to their starting position and
+      orientation.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>17-24</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>We also know (or can observe) that each time Hs2 is applied, the corner-cubie in
+  the bottom layer is twisted clockwise. And since Hs2 is applied three times, the
+  corner-cubie gets twisted clockwise three times. This results in returning the
+  corner-cubie to its original orientation. Instead of applying the three clockwise
+  twists to a single corner-cubie, the three twists can be applied to two corner-cubies.
+  This is accomplished by replacing the original corner-cubie with another
+  corner-cubie.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 D' (F R' F' R)2 (F R' F' R)2 D" twedra-config=
+    'colors: "gray", stickers: "white, 2 0 1 2 4 5 8; green, 4 0 3 4 6 7 8; red, 1 0 1 2 3 4 6 8; yellow, 3 2 4 8; orange, 0 0 4; blue, 5 4 6 8"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>The corner-cubie in the bottom layer can be twisted (clockwise) by replacing it
+      with another corner-cubie.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Replace the original corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>10-17</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>18-25</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>In the example above, one clockwise twist was applied to the target corner-cubie,
+  and two clockwise twists were applied to the replacement corner-cubie. We can use this
+  technique to orient all corner-cubies.</p>
+  <p>The following procedure can be used to orient all corner-cubies:</p>
+  <ol>
+    <li>Choose a corner-cubie that is already oriented. If needed, use the technique
+    above to orient a corner-cubie.</li>
+    <li>Find the corner-cubie that is physically farthest away from the chosen oriented
+    corner-cubie; this is the Replacement corner-cubie.</li>
+    <li>The Replacement corner-cubie will be used for every corner-cubie that needs to
+    be oriented.</li>
+    <li>For each un-oriented corner-cubie (except the Replacment corner-cubie):
+      <ol type='a'>
+        <li>Ensure the un-oriented corner-cubie is positioned bottom, right on the Front
+        face.</li>
+        <li>Ensure the Replacement corner-cubie is in the bottom layer.</li>
+        <li>Apply the technique above to twist the un-oriented corner-cubie
+        clockwise.</li>
+        <li>If the corner-cubie is still not oriented correctly, apply the technique a
+        second time.</li>
+      </ol>
+    </li>
+  </ol>
+  <p>The Replacement corner-cubie may start out oriented or un-oriented, and while
+  orienting other corner-cubies, the Replacement corner-cubie may switch between being
+  oriented and being un-oriented.</p>
+  <p>Orienting corner-cubies in the manner described above is effective, but slow. The
+  process can be sped up if we are smarter about which corner-cubie is used as a
+  replacement and when the replacement is used.</p>
+  <ul>
+    <li>Instead of designating a single corner-cubie as the Replacment, any corner-cubie
+    in the bottom layer can be chosen as the replacement.</li>
+    <li>Instead of twisting an un-oriented corner-cubie once and then twisting the
+    replacement corner-cubie twice, the un-oriented corner-cubie can be twisted twice
+    and the replacement twisted once.</li>
+    <li>Instead of using one replacement corner-cubie, two replacement corner-cubies can
+    be used. By doing so, it is sometimes possible to orient three corner-cubies at a
+    time.</li>
+  </ul>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)4 D2 (F R' F' R)2 D2" twedra-config=
+    'colors: "gray", stickers: "white, 2 0 1 2 4 5 8; green, 4 0 3 4 6 7, 1 6; red, 1 0 1 2 3 4, 3 2; yellow, 3 4, 4 8; orange, 0 0 4; blue, 5 4 6; pink, 0 8, 3 6, 5 2"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Any corner-cubie in the bottom layer can be used as the replacement.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>17-18</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D2</td>
+        </tr>
+        <tr>
+          <td>19-26</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>27-28</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)4 D' (F R' F' R)2 D" twedra-config=
+    'colors: "gray", stickers: "white, 2 0 1 2 4 5 8; green, 4 0 3 4 6 7, 1 6; red, 1 0 1 2 3 4, 3 2; yellow, 3 4, 4 8; orange, 0 0 4; blue, 5 4 6; pink, 1 8, 3 8, 5 8"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Twist the un-oriented corner-cubie twice.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9-16</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>18-25</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 D' (F R' F' R)2 D' (F R' F' R)2 D2" twedra-config=
+    'colors: "gray", stickers: "white, 2 0 1 2 4 5 8; green, 4 0 3 4 6 7, 3 2; red, 1 0 1 2 3 4, 4 8, 3 8; yellow, 3 4, 1 6, 5 8, 0 8; blue, 5 4, 1 8, 3 6; darkorange, 0 4, 5 2"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Using two replacement corner-cubies can orient three corner-cubies.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>10-17</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>19-26</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>27-28</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D2</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>In some cases it will be impossible to position the cube so that two un-oriented
+  corner-cubies are in the bottom layer. When that occurs, proceed to orient one of the
+  un-oriented corner-cubies, in the usual manner, but choose any (oriented) corner-cubie
+  in the bottom layer as the replacement corner-cubie. This will orient the un-oriented
+  corner-cubie and un-orient the (oriented) replacement corner-cubie. The two remaining
+  un-oriented corner-cubies can then be oriented in the usual manner.</p>
+  <div class='note'>
+    <twedra-player alg="(F R' F' R)2 D' (F R' F' R)2 (F R' F' R)2 D" twedra-config=
+    'stickers: "white, 0 2; green, 4 0 1 2 3 4 5 6 7 8, 3 2; red, 4 8; yellow, 1 6; blue, 2 6; darkorange, 5 0"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Use an oriented corner-cubie as the replacement corner-cubie.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-8</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>10-18</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>19-25</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>An alternative method for handling this situation is to use Setup-Teardown.</p>
+  <div class='note'>
+    <twedra-player alg="B' B' (F R' F' R)2 D' (F R' F' R)2 (F R' F' R)2 D B B"
+    twedra-config=
+    'stickers: "white, 0 2; green, 4 0 1 2 3 4 5 6 7 8, 3 2; red, 4 8; yellow, 1 6; blue, 2 6; darkorange, 5 0"'>
+    </twedra-player>
+    <div class='expo'>
+      <p>Use Setup to move an un-oriented corner-cubie to the bottom layer to serve as
+      the replacement corner-cubie.</p>
+      <table border="1" cellspacing="0">
+        <tr>
+          <th>Step</th>
+          <th>Desc</th>
+          <th>Alg</th>
+        </tr>
+        <tr>
+          <td>1-2</td>
+          <td>Setup (Move un-oriented corner-cubie to bottom layer)</td>
+          <td>B' B'</td>
+        </tr>
+        <tr>
+          <td>3-10</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Replace the oriented corner-cubie</td>
+          <td>D'</td>
+        </tr>
+        <tr>
+          <td>12-19</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>20-27</td>
+          <td>Apply Hs2</td>
+          <td>(F R' F' R)2</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td>Return corner-cubies to their home positions</td>
+          <td>D</td>
+        </tr>
+        <tr>
+          <td>29-30</td>
+          <td>Teardown (Undo Setup)</td>
+          <td>B B</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>In general, the steps for orienting a corner-cubie are:</p>
+  <ol>
+    <li>Apply Hs2 until the corner-cubie in the bottom layer is oriented (this will
+    always require applying Hs2 either once or twice).</li>
+    <li>Then replace the oriented corner-cubie (by turning the bottom layer),</li>
+    <li>Then apply Hs2 until the top and middle layers are restored (the replacement
+    corner-cubie may still be un-oriented).</li>
+    <li>Then un-turn the bottom layer (which returns all corner-cubies to their home
+    positions).</li>
+  </ol>
+  <p>The process described above for orienting corner-cubies is simple, but somewhat
+  laborious. A common technique that other solutions use to orient corner-cubies in the
+  top layer is <a href='soln-cube-alt.html#rdrd'>(R' D' R D)</a>. You may prefer using
+  it over using Hs2 to orient corner-cubies.</p>
+  <h3><a name='summary' id="summary">Summary</a></h3>
+  <p>A HedgeSlammer...</p>
+  <ol style='list-style-type: none'>
+    <li>...swaps two vertical corner-cubies between top and bottom layers.</li>
+    <li>...swaps two diagonal corner-cubies in the top layer.</li>
+    <li>...cycles three edge-cubies.</li>
+    <li>...applied twice, twists a corner-cubie in the bottom layer.</li>
+    <li>...applied six times is the same as doing nothing.</li>
+    <li>...applied six times with a pivot, flips two edge-cubies.</li>
+  </ol>
+  <p>Steps for solving the cube:</p>
+  <ol>
+    <li>Position corners
+      <ul>
+        <li>Position three corner-cubies in top layer.</li>
+        <li>Use Hs to move last corner-cubie into top layer.</li>
+        <li>Turn bottom layer so no corner-cubies are in home positions.</li>
+        <li>Use Hs and the Up face to move corner-cubies in bottom layer to their home
+        positions.</li>
+      </ul>
+    </li>
+    <li>Position edges
+      <ul>
+        <li>Apply Hs2 and Pre-stage and/or Setup-Teardown.</li>
+      </ul>
+    </li>
+    <li>Orient Edges
+      <ul>
+        <li>Apply (Hs2)3 and Pivots to flip two edge-cubies at a time.</li>
+      </ul>
+    </li>
+    <li>Orient Corners
+      <ul>
+        <li>Apply (Hs2)3 and turn the Down face to orient corner-cubies in bottom
+        layer.</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Once you have mastered this method of solving the cube, you may wish to explore
+  some <a href='soln-cube-alt.html'>variations</a>.</p>
+  <p>Happy solving!</p>
+</body>
+</html>
