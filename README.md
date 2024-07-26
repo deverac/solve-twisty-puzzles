@@ -14,7 +14,7 @@ Two Javascript libraries are used to illustrate the solving process.
 * twedra.js, a (50Kb) Javascript library that can animate twisty-puzzle polyhedras
 * jjcube.js, a Javascript library for drawing static images of a 3x3x3 cube
 
-More info is available in [here](./docs/index.html).
+More info is available in [here](https://deverac.github.io/solve-twisty-puzzles/).
 
 
 # Building
